@@ -1,4 +1,5 @@
 .metadata
+.recommenders/
 EntityManagerTest.zip
 EntityManagerTest/.settings
 EntityManagerTest/target
