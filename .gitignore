@@ -1,9 +1,8 @@
 .metadata
 .recommenders/
-EntityManagerTest.zip
 EntityManagerTest/.settings
-EntityManagerTest/target
 EntityManagerTest/.classpath
 EntityManagerTest/.project
 EntityManagerTest/.tern-project
+EntityManagerTest/target
 Testes/
