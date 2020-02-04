@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<mapping class="br.com.emtest.persistence.entities.FilmText" />
+		<mapping class="br.com.emtest.persistence.entities.Category" />
+		<mapping class="br.com.emtest.persistence.entities.Address" />
+		<mapping class="br.com.emtest.persistence.entities.FilmActor" />
+		<mapping class="br.com.emtest.persistence.entities.Customer" />
+		<mapping class="br.com.emtest.persistence.entities.Film" />
+		<mapping class="br.com.emtest.persistence.entities.Staff" />
+		<mapping class="br.com.emtest.persistence.entities.Store" />
+		<mapping class="br.com.emtest.persistence.entities.City" />
+		<mapping class="br.com.emtest.persistence.entities.Payment" />
+		<mapping class="br.com.emtest.persistence.entities.Language" />
+		<mapping class="br.com.emtest.persistence.entities.Rental" />
+		<mapping class="br.com.emtest.persistence.entities.Actor" />
+		<mapping class="br.com.emtest.persistence.entities.Country" />
+		<mapping class="br.com.emtest.persistence.entities.FilmCategory" />
+		<mapping class="br.com.emtest.persistence.entities.Inventory" />
+	</session-factory>
+</hibernate-configuration>
