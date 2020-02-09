@@ -1,11 +1,14 @@
 package br.com.emtest.persistence.dao;
 
-import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.jboss.seam.ScopeType;
+import org.jboss.seam.annotations.AutoCreate;
+import org.jboss.seam.annotations.In;
+import org.jboss.seam.annotations.Name;
+import org.jboss.seam.annotations.Scope;
 
 import br.com.emtest.persistence.entities.Category;
 
@@ -14,12 +17,14 @@ import br.com.emtest.persistence.entities.Category;
  * @see .Category
  * @author Hibernate Tools
  */
-@Stateless
+@AutoCreate
+@Name("categoryDAO")
+@Scope(ScopeType.APPLICATION)
 public class CategoryDAO {
 
 	private static final Log log = LogFactory.getLog(CategoryDAO.class);
 
-	@PersistenceContext
+	@In
 	private EntityManager entityManager;
 
 	public void persist(Category transientInstance) {
