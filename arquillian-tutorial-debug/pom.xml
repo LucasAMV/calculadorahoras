@@ -10,6 +10,12 @@
 
 	<name>arquillian-tutorial-debug</name>
 	<url>http://maven.apache.org</url>
+	
+	<description>
+		Nesta continuação do tutorial o conceito de teste em containers será inicialmente explorada.
+		Perfis foram criados para cada container, basta apenas trocar o activation de perfil para
+		executar o teste em cada container (Weld, Wildfly e JBossAS).
+	</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
