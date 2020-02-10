@@ -11,3 +11,7 @@ Contém um projeto Java EE + Seam que usa as classes da base Sakila para meu est
 Contém o tutorial do Framework de testes Arquillian que implementarei no projeto SakilaSeamBasic para aprender como utilizá-lo.
   * [**arquillian-tutorial-debug**](/arquillian-tutorial-debug)
   Continuação do projeto inicial, agora com deploy em containers utilizando perfis.
+
+
+
+[Como formatar o README](https://github.com/18F/open-source-guide/blob/18f-pages/pages/making-readmes-readable.md)
