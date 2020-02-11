@@ -1,14 +1,17 @@
 package br.com.emtest.persistence.dao;
 
+import java.io.Serializable;
+
 import javax.persistence.EntityManager;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.jboss.seam.ScopeType;
 import org.jboss.seam.annotations.AutoCreate;
 import org.jboss.seam.annotations.In;
+import org.jboss.seam.annotations.Logger;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.annotations.Scope;
+import org.jboss.seam.annotations.Startup;
+import org.jboss.seam.log.Log;
 
 import br.com.emtest.persistence.entities.Actor;
 
@@ -17,12 +20,16 @@ import br.com.emtest.persistence.entities.Actor;
  * @see .Actor
  * @author Hibernate Tools
  */
+@Startup
 @AutoCreate
 @Name("actorDAO")
 @Scope(ScopeType.APPLICATION)
-public class ActorDAO {
+public class ActorDAO implements Serializable {
 
-	private static final Log log = LogFactory.getLog(ActorDAO.class);
+	private static final long serialVersionUID = -9192842194600087729L;
+
+	@Logger
+	private Log log;
 
 	@In
 	private EntityManager entityManager;
