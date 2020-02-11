@@ -1,0 +1,22 @@
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:s="http://jboss.org/schema/seam/taglib" contentType="text/html">
+	<h:html>
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		
+		<title>TITULO</title>		
+		<ui:insert name="head" />
+	</h:head>
+	<h:body>		
+		<ui:insert name="body" />
+		<a:status id="waitStatus" 
+			onstart="#{rich:component('waitModalPanel')}.show()"
+			onstop="#{rich:component('waitModalPanel')}.hide()" />
+	</h:body>
+	</h:html>
+</f:view>
