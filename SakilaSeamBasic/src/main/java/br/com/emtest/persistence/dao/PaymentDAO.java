@@ -19,7 +19,7 @@ import br.com.emtest.persistence.entities.Payment;
  */
 @AutoCreate
 @Name("paymentDAO")
-@Scope(ScopeType.APPLICATION)
+@Scope(ScopeType.SESSION)
 public class PaymentDAO {
 
 	private static final Log log = LogFactory.getLog(PaymentDAO.class);

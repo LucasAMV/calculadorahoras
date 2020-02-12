@@ -19,7 +19,7 @@ import br.com.emtest.persistence.entities.Country;
  */
 @AutoCreate
 @Name("countryDAO")
-@Scope(ScopeType.APPLICATION)
+@Scope(ScopeType.SESSION)
 public class CountryDAO {
 
 	private static final Log log = LogFactory.getLog(CountryDAO.class);

@@ -17,13 +17,13 @@
         
     <core:manager conversation-timeout="120000"
                   concurrent-request-timeout="500"
-                  conversation-id-parameter="cid"/>
+                  conversation-id-parameter="cid" />
                   
-	<persistence:managed-persistence-context name="sakila" persistence-unit-jndi-name="java:/sakila" auto-create="true" entity-manager-factory="#{sakila}"/>
-	
-	<transaction:entity-transaction entity-manager="#{sakila}"/>
-	
+	<persistence:managed-persistence-context name="sakilaDatabase" auto-create="true" persistence-unit-jndi-name="java:/EntityManagerFactories/sakila" />
 	<!-- 
+	<transaction:entity-transaction entity-manager="#{entityManager}" auto-create="true"/>
+	
+	
 	<factory name="session" scope="STATELESS" auto-create="true" value="#{entityManager.delegate}"/>
     <security:identity authenticate-method="#{authenticator.authenticate}"/>    
      -->

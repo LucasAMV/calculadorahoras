@@ -19,7 +19,7 @@ import br.com.emtest.persistence.entities.Inventory;
  */
 @AutoCreate
 @Name("inventoryDAO")
-@Scope(ScopeType.APPLICATION)
+@Scope(ScopeType.SESSION)
 public class InventoryDAO {
 
 	private static final Log log = LogFactory.getLog(InventoryDAO.class);

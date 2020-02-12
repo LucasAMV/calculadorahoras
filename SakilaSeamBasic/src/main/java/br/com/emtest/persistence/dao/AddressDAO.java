@@ -19,7 +19,7 @@ import br.com.emtest.persistence.entities.Address;
  */
 @AutoCreate
 @Name("addressDAO")
-@Scope(ScopeType.APPLICATION)
+@Scope(ScopeType.SESSION)
 public class AddressDAO {
 
 	private static final Log log = LogFactory.getLog(AddressDAO.class);

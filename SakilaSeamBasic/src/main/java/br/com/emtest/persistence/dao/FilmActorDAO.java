@@ -20,7 +20,7 @@ import br.com.emtest.persistence.entities.embeddable.FilmActorId;
  */
 @AutoCreate
 @Name("filmActorDAO")
-@Scope(ScopeType.APPLICATION)
+@Scope(ScopeType.SESSION)
 public class FilmActorDAO {
 
 	private static final Log log = LogFactory.getLog(FilmActorDAO.class);

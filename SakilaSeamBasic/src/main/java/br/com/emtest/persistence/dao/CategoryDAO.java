@@ -19,7 +19,7 @@ import br.com.emtest.persistence.entities.Category;
  */
 @AutoCreate
 @Name("categoryDAO")
-@Scope(ScopeType.APPLICATION)
+@Scope(ScopeType.SESSION)
 public class CategoryDAO {
 
 	private static final Log log = LogFactory.getLog(CategoryDAO.class);

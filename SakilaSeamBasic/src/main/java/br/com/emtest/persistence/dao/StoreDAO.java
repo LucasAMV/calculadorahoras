@@ -19,7 +19,7 @@ import br.com.emtest.persistence.entities.Store;
  */
 @AutoCreate
 @Name("storeDAO")
-@Scope(ScopeType.APPLICATION)
+@Scope(ScopeType.SESSION)
 public class StoreDAO {
 
 	private static final Log log = LogFactory.getLog(StoreDAO.class);

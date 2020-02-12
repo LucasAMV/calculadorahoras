@@ -19,7 +19,7 @@ import br.com.emtest.persistence.entities.Rental;
  */
 @AutoCreate
 @Name("rentalDAO")
-@Scope(ScopeType.APPLICATION)
+@Scope(ScopeType.SESSION)
 public class RentalDAO {
 
 	private static final Log log = LogFactory.getLog(RentalDAO.class);

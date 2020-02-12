@@ -19,7 +19,7 @@ import br.com.emtest.persistence.entities.City;
  */
 @AutoCreate
 @Name("cityDAO")
-@Scope(ScopeType.APPLICATION)
+@Scope(ScopeType.SESSION)
 public class CityDAO {
 
 	private static final Log log = LogFactory.getLog(CityDAO.class);

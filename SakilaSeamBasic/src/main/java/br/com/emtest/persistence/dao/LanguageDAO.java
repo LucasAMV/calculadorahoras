@@ -19,7 +19,7 @@ import br.com.emtest.persistence.entities.Language;
  */
 @AutoCreate
 @Name("languageDAO")
-@Scope(ScopeType.APPLICATION)
+@Scope(ScopeType.SESSION)
 public class LanguageDAO {
 
 	private static final Log log = LogFactory.getLog(LanguageDAO.class);

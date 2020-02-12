@@ -19,7 +19,7 @@ import br.com.emtest.persistence.entities.FilmText;
  */
 @AutoCreate
 @Name("filmTextDAO")
-@Scope(ScopeType.APPLICATION)
+@Scope(ScopeType.SESSION)
 public class FilmTextDAO {
 
 	private static final Log log = LogFactory.getLog(FilmTextDAO.class);

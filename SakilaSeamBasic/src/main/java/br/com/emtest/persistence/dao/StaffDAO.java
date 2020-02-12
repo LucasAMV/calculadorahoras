@@ -19,7 +19,7 @@ import br.com.emtest.persistence.entities.Staff;
  */
 @AutoCreate
 @Name("staffDAO")
-@Scope(ScopeType.APPLICATION)
+@Scope(ScopeType.SESSION)
 public class StaffDAO {
 
 	private static final Log log = LogFactory.getLog(StaffDAO.class);
