@@ -23,7 +23,6 @@ import br.com.emtest.persistence.entities.Actor;
  * @see .Actor
  * @author Hibernate Tools
  */
-@Startup
 @AutoCreate
 @Name("actorDAO")
 @Scope(ScopeType.SESSION)

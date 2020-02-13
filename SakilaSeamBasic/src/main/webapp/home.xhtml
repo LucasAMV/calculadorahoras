@@ -9,48 +9,7 @@
 
 <ui:define name="content">
 
-<div class="section">
-	<h1>Confirm Hotel Booking #{actorDAO.findById(1).firstName}</h1>
-	
-</div>
-
-<div class="section">
-
-	<ui:include src="hotelview.xhtml"/>
-		
-	<s:decorate id="DecorateTotalPayment" template="display.xhtml">
-		<ui:define name="label">Total Payment:</ui:define>
-		<h:outputText id="BookingTotal" value="#{booking.total}">
-			<f:convertNumber type="currency" currencySymbol="$"/>
-		</h:outputText>
-	</s:decorate>
-
-	<s:decorate id="DecorateCheckInDate" template="display.xhtml">
-		<ui:define name="label">Check In Date:</ui:define>
-		<h:outputText id="BookingCheckinDate" value="#{booking.checkinDate}"/>
-	</s:decorate>
-
-	<s:decorate id="DecorateCheckoutDate" template="display.xhtml">
-		<ui:define name="label">Check Out Date:</ui:define>
-		<h:outputText id="BookingCheckoutDate" value="#{booking.checkoutDate}"/>
-	</s:decorate>
-
-	<s:decorate id="DecorateCreditCard" template="display.xhtml">
-		<ui:define name="label">Credit Card #:</ui:define>
-		#{booking.creditCard}
-	</s:decorate>
-	
-	<div class="buttonBox">
-		<h:form id="confirm">
-			<h:commandButton id="confirm" value="Confirm" action="#{hotelBooking.confirm}"/>
-			&#160;
-    		<s:button id="revise" value="Revise" view="/book.xhtml"/>
-    		&#160;
-    		<h:commandButton id="cancel" value="Cancel" action="#{hotelBooking.cancel}"/>
-		</h:form>
-	</div>
-
-</div>
+	<h:outputText value="Nome: #{actorDAO.findById(1).firstName}" />
 
 </ui:define>
 

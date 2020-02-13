@@ -4,6 +4,6 @@
 	no-conversation-view-id="/home.xhtml">
 	
 	<page view-id="/home.xhtml">
-		<begin-conversation join="false" nested="false"/>
+		<begin-conversation join="true" />
 	</page>
 </pages>
