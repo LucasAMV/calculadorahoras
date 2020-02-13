@@ -48,6 +48,7 @@
 		<param-name>org.ajax4jsf.DEFAULT_EXPIRE</param-name>
 		<param-value>262974383</param-value>
 	</context-param>
+	<!-- 
 	<context-param>
 		<param-name>org.richfaces.LoadScriptStrategy</param-name>
 		<param-value>ALL</param-value>
@@ -64,16 +65,17 @@
 		<param-name>org.richfaces.fileUpload.maxRequestSize</param-name>
 		<param-value>200000000</param-value>
 	</context-param>
-	<!-- Fila padrão para as requisições ajax -->
+	 -->
+	<!-- Fila padrão para as requisições ajax 
 	<context-param>
 		<param-name>org.richfaces.queue.global.enabled</param-name>
 		<param-value>true</param-value>
-	</context-param>
-	<!-- Configuration for Richfaces/ Ajax4jsf -->
+	</context-param>-->
+	<!-- Configuration for Richfaces/ Ajax4jsf 
 	<context-param>
 		<param-name>org.richfaces.skin</param-name>
 		<param-value>classic</param-value>
-	</context-param>
+	</context-param>-->
 	<!-- Configuration for Prime -->
 	<context-param>
 		<param-name>primefaces.THEME</param-name>
