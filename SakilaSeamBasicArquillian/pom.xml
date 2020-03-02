@@ -1,0 +1,209 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>br.com.emtest</groupId>
+	<artifactId>SakilaSeamBasicArquillian</artifactId>
+	<packaging>war</packaging>
+	<version>1.0</version>
+	<name>SakilaSeamBasic Maven Webapp</name>
+
+	<repositories>
+		<repository>
+			<id>springrepo</id>
+			<name>Spring Plugins Repository (for Seam)</name>
+			<url>https://repo.spring.io/plugins-release/</url>
+		</repository>
+	</repositories>
+
+	<properties>
+		<!-- Version string properties -->
+		<version.seam>2.3.1.Final</version.seam>
+		<version.jbossas7>7.1.1.Final</version.jbossas7>
+		<version.jsf2>2.1.7</version.jsf2>
+		<version.junit>4.10</version.junit>
+		<version.richfaces>4.3.3.Final</version.richfaces>
+
+		<!-- JSF -->
+		<version.jsf2>2.1.7</version.jsf2>
+
+		<!-- Version of Hibernate projects -->
+		<version.org.hibernate>4.2.0.Final</version.org.hibernate>
+		<version.org.hibernate.validator>4.2.0.Final</version.org.hibernate.validator>
+		<version.org.hibernate.search>4.3.0.Final</version.org.hibernate.search>
+		<version.org.hibernate.javax.persistence>1.0.1.Final</version.org.hibernate.javax.persistence>
+
+		<!-- Versions of Arquillian and Shrinkwrap -->
+		<version.org.jboss.arquillian>1.1.0.Final</version.org.jboss.arquillian>
+		<version.org.jboss.arquillian.extension.drone>1.1.1.Final</version.org.jboss.arquillian.extension.drone>
+		<version.org.jboss.arquillian.graphene>1.0.0.Final</version.org.jboss.arquillian.graphene>
+		<version.org.jboss.as.arquillian.container>7.1.3.Final</version.org.jboss.as.arquillian.container>
+		<version.org.jboss.shrinkwrap.resolver>2.0.0</version.org.jboss.shrinkwrap.resolver>
+
+		<version.org.jboss.bom>1.0.7.CR8</version.org.jboss.bom>
+	</properties>
+
+	<!-- Carrega os BOMs -->
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.jboss.seam</groupId>
+				<artifactId>bom</artifactId>
+				<version>${version.seam}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.jboss.bom</groupId>
+				<artifactId>jboss-javaee-6.0-with-hibernate</artifactId>
+				<version>${version.org.jboss.bom}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.jboss.bom</groupId>
+				<artifactId>jboss-javaee-6.0-with-tools</artifactId>
+				<version>${version.org.jboss.bom}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+		<!-- Seam version declarada no BOM > properties -->
+		<dependency>
+			<groupId>org.jboss.seam</groupId>
+			<artifactId>jboss-seam</artifactId>
+			<version>2.3.1.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.seam</groupId>
+			<artifactId>jboss-seam-ui</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.seam</groupId>
+			<artifactId>jboss-seam-debug</artifactId>
+		</dependency>
+
+		<!-- Commons - sei lá pq, teste -->
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-collections</groupId>
+					<artifactId>commons-collections</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+
+		<!-- BOM jboss-javaee-6.0-with-hibernate -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator-annotation-processor</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate.javax.persistence</groupId>
+			<artifactId>hibernate-jpa-2.0-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- JSF -->
+		<dependency>
+			<groupId>com.sun.faces</groupId>
+			<artifactId>jsf-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.faces</groupId>
+			<artifactId>jsf-impl</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.spec.javax.faces</groupId>
+			<artifactId>jboss-jsf-api_2.1_spec</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.spec.javax.servlet</groupId>
+			<artifactId>jboss-servlet-api_3.0_spec</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- Test dependencies <dependency> <groupId>org.jboss.shrinkwrap.resolver</groupId> <artifactId>shrinkwrap-resolver-depchain</artifactId> <type>pom</type> <scope>test</scope> </dependency> <dependency> 
+			<groupId>junit</groupId> <artifactId>junit</artifactId> <scope>test</scope> </dependency> <dependency> <groupId>org.jboss.arquillian.junit</groupId> <artifactId>arquillian-junit-container</artifactId> 
+			<scope>test</scope> </dependency> <dependency> <groupId>org.jboss.arquillian.protocol</groupId> <artifactId>arquillian-protocol-servlet</artifactId> <scope>test</scope> </dependency> -->
+
+		<dependency>
+			<groupId>dom4j</groupId>
+			<artifactId>dom4j</artifactId>
+			<version>1.6.1</version><!--$NO-MVN-MAN-VER$ -->
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.25</version>
+		</dependency>
+
+	</dependencies>
+
+	<!-- <repositories> -->
+	<!-- <repository> -->
+	<!-- <id>JBossNexus</id> -->
+	<!-- <name>For JBoss Seam BOM</name> -->
+	<!-- <url>https://repository.jboss.org/nexus/content/repositories/releases/</url> -->
+	<!-- </repository> -->
+	<!-- <repository> -->
+	<!-- <id>JBossNexus3rdParty</id> -->
+	<!-- <name>For dom4j-1.6.1-brew</name> -->
+	<!-- <url>https://repository.jboss.org/nexus/content/repositories/thirdparty-releases/</url> -->
+	<!-- </repository> -->
+	<!-- </repositories> -->
+
+	<build>
+		<finalName>SakilaSeamBasic</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.6.2</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<webResources>
+						<resource>
+							<directory>src/main/webapp</directory>
+							<filtering>true</filtering>
+						</resource>
+					</webResources>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.0.0-M4</version>
+			</plugin>
+		</plugins>
+	</build>
+</project>

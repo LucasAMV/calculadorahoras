@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.archive.autodetection">none</property>
+        <property name="hibernate.bytecode.use_reflection_optimizer">false</property>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.password">root</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/sakila?serverTimezone=UTC</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.ejb.persistenceUnitName">empu</property>
+        <property name="hibernate.format_sql">true</property>
+        <property name="hibernate.search.autoregister_listeners">true</property>
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.validator.apply_to_ddl">false</property>
+        <mapping class="SalesByFilmCategory" />
+        <mapping class="FilmText" />
+        <mapping class="Category" />
+        <mapping class="Address" />
+        <mapping class="FilmActor" />
+        <mapping class="Customer" />
+        <mapping class="Film" />
+        <mapping class="Staff" />
+        <mapping class="Store" />
+        <mapping class="City" />
+        <mapping class="CustomerList" />
+        <mapping class="FilmList" />
+        <mapping class="Payment" />
+        <mapping class="Language" />
+        <mapping class="Rental" />
+        <mapping class="NicerButSlowerFilmList" />
+        <mapping class="Actor" />
+        <mapping class="ActorInfo" />
+        <mapping class="Country" />
+        <mapping class="StaffList" />
+        <mapping class="FilmCategory" />
+        <mapping class="Inventory" />
+        <mapping class="SalesByStore" />
+    </session-factory>
+</hibernate-configuration>
