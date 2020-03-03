@@ -1,15 +1,9 @@
 package br.com.emtest.main;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
-import br.com.emtest.persistence.entities.Actor;
-
 public class Main {
 	
 	public static void main(String[] args) {
-		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("empu");
+		/*EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("empu");
 		EntityManager em = entityManagerFactory.createEntityManager();
 		System.out.println(em);
 		
@@ -18,5 +12,8 @@ public class Main {
 		System.out.println(a1.getFirstName());
 		
 		em.close();
+		*/
+		
+		System.out.println(Package.getPackage("br.com.emtest.persistence.dao"));
 	}
 }

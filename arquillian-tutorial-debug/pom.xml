@@ -40,7 +40,7 @@
 		</plugins>
 	</build>
 
-	<!-- Add the Arquillian APIs -->
+	<!-- Add the Arquillian APIs by BOM -->
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
