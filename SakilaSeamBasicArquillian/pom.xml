@@ -230,7 +230,11 @@
 		<profile>
 			<id>arquillian-jbossas-remote</id>
 			<activation>
-				<activeByDefault>true</activeByDefault><!-- Ativação necessária para executar o tutorial -->
+				<!-- https://docs.jboss.org/author/display/ARQ/Container%20selection.html -->
+				<!-- Arquillian selects the target container according to which container adapter is available on the runtime classpath at the time the test is launched. Therefore, you must include the container adapter 
+					as a test-scoped dependency that corresponds to the container you want to target. -->
+				<!-- Ativação necessária para executar o tutorial -->
+				<activeByDefault>true</activeByDefault>
 			</activation>
 			<dependencies>
 				<dependency>
