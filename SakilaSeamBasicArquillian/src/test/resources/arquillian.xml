@@ -2,12 +2,16 @@
 	xsi:schemaLocation="
         http://jboss.org/schema/arquillian
         http://jboss.org/schema/arquillian/arquillian_1_0.xsd">
-        
-	<defaultProtocol type="Servlet 3.0" />
+
+	<engine>
+		<property name="deploymentExportPath">target/</property>
+	</engine>
+
 	<container qualifier="jboss" default="true">
 		<configuration>
-			<property name="jbossHome">C:\Dev\Servidores\jboss-as-7.1.1.Final</property>
-			<property name="javaHome">C:\Dev\JDK\jdk1.7.0_80</property>
+			<property name="allowConnectingToRunningServer">true</property>
+			<property name="jbossHome">C:\Nz\Dev\Servidores\jboss-as-7.1.1.Final</property>
+			<property name="javaHome">C:\Program Files\Java\jdk1.7.0_80</property>
 		</configuration>
 	</container>
 
