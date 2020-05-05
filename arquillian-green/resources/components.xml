@@ -16,22 +16,22 @@
                  http://jboss.org/schema/seam/components http://jboss.org/schema/seam/components-2.3.xsd">
 
 	<core:init />
-	
+
 	<async:quartz-dispatcher />
 
 	<core:manager concurrent-request-timeout="5000" conversation-timeout="600000" conversation-id-parameter="cid" parent-conversation-id-parameter="pid" />
 
-	<persistence:entity-manager-factory name="sisgm"/>
-	<persistence:managed-persistence-context name="entityManager" auto-create="true" entity-manager-factory="#{sisgm}" />
+	<!-- <persistence:entity-manager-factory name="sisgm"/> <persistence:managed-persistence-context name="entityManager" auto-create="true" entity-manager-factory="#{sisgm}" /> -->
+	<persistence:managed-persistence-context name="entityManager" auto-create="true" persistence-unit-jndi-name="java:/greenEntityManagerFactory" />
 	<factory name="session" scope="stateless" auto-create="true" value="#{entityManager.delegate}" />
 
 	<!-- CNAB -->
-	<persistence:entity-manager-factory name="cnab"/>
+	<persistence:entity-manager-factory name="cnab" />
 	<persistence:managed-persistence-context name="entityManagerCnab" auto-create="true" entity-manager-factory="#{cnab}" />
 	<factory name="sessionCnab" scope="stateless" auto-create="true" value="#{entityManagerCnab.delegate}" />
 
 	<!-- GPA -->
-	<persistence:entity-manager-factory name="gpa"/>
+	<persistence:entity-manager-factory name="gpa" />
 	<persistence:managed-persistence-context name="entityManagerGpa" auto-create="true" entity-manager-factory="#{gpa}" />
 	<factory name="sessionGpa" scope="stateless" auto-create="true" value="#{entityManagerGpa.delegate}" />
 

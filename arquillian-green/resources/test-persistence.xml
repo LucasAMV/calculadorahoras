@@ -8,7 +8,7 @@
 	<persistence-unit name="sisgm" transaction-type="JTA">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<jta-data-source>java:/greenDatasource</jta-data-source>
-		
+		<jar-file>lib/beans-1.0.0-SNAPSHOT.jar</jar-file>
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
 			<property name="hibernate.hbm2ddl.auto" value="none" />
