@@ -19,7 +19,7 @@ import br.com.gridsoftware.persistencia.entidades.ContratoAverbacao;
  * 6. O teste finaliza e o deploy é automaticamente removido do servidor.
  */
 @RunWith(Arquillian.class)
-public class ClasseExemploTeste extends JUnitSeamArquillianTest {
+public class ClasseExemploArquillianTest extends JUnitSeamArquillianTest {
 	
 	@Test
 	public void TesteSimplesParaVerificarFuncionamento() throws Exception {
