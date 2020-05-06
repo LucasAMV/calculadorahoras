@@ -21,6 +21,7 @@
 
 	<core:manager concurrent-request-timeout="5000" conversation-timeout="600000" conversation-id-parameter="cid" parent-conversation-id-parameter="pid" />
 
+	<!-- Principal -->
 	<persistence:managed-persistence-context name="entityManager" auto-create="true" persistence-unit-jndi-name="java:/greenEntityManagerFactory" />
 	<factory name="session" scope="stateless" auto-create="true" value="#{entityManager.delegate}" />
 
