@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"	
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	contentType="text/html">
+
+<html> 	
+	
+	<f:loadBundle var="messages" basename="messages" />
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+		
+		<p:resources />
+		
+		<a4j:loadStyle src="/inc/css/style.xcss"/>
+		<a4j:loadStyle src="/inc/css/style.css"/>
+		<a4j:loadStyle src="/inc/css/classic/style.css"/>
+		<script src="#{facesContext.externalContext.requestContextPath}/inc/js/jquery.limit-1.3.js" type="text/javascript"/>
+		<script src="#{facesContext.externalContext.requestContextPath}/inc/js/jquery.maskedinput-1.2.2.min.js" type="text/javascript"/>
+		<script src="#{facesContext.externalContext.requestContextPath}/inc/js/jquery.price_format.1.3.js" type="text/javascript"/>
+		<script src="#{facesContext.externalContext.requestContextPath}/inc/js/jquery.alphanumeric.js" type="text/javascript"/>
+		<title>#{messages.SISTEMA} - #{messages.VERSAO_SISTEMA}</title>
+	</head>
+	
+	<body>
+	
+		<a4j:outputPanel id="pgrowl" ajaxRendered="true">
+			<p:growl id="growl" 
+				sticky="false" 
+				showSummary="true" 
+				showDetail="false" 
+				globalOnly="false" 
+				rendered="#{showGlobalMessages != 'false'}"/>
+		</a4j:outputPanel>
+		
+		<div class="pageLayout">
+		
+			<!-- Header -->
+			<div class="pageHeader">
+				<ui:include src="/pages/toolBar.xhtml" />			
+				<ui:insert name="imgHeader"/>
+			</div>
+			
+			<!-- Body -->
+			<div class="pageBody">
+				<div class="contentBodyMargin">
+					<ui:insert name="pageBody"/>
+				</div>
+			</div>
+			
+			<!-- Footer -->
+			<div class="pageFooter">	
+				<a href="http://www.seguranca.mt.gov.br" target="blank">APP DEMO</a>&nbsp; - &copy;&nbsp;. Versão #{messages.VERSAO_SISTEMA}
+			</div>			
+		</div>
+		
+		<a4j:status id="statusPage">
+			<f:facet name="start">
+				<s:span>
+					<s:div styleClass="classBlock">
+						<h:outputText value="Aguarde processando..." styleClass="statusMessage" />
+					</s:div>
+					<h:graphicImage styleClass="progressBar" value="/inc/img/ajax-loader.gif" />					
+				</s:span>
+			</f:facet>
+		</a4j:status>	
+	</body>
+</html>
+
+</f:view> 

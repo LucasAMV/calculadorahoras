@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"    
+	xmlns:rich="http://richfaces.org/rich"    
+	xmlns:a4j="http://richfaces.org/a4j">
+    
+	<div class="tableControl">
+	
+		<h:outputFormat value="RESULTADO {0}-{1} DE {2}" rendered="#{not empty abstractActionList.resultList}">
+			<f:param value="#{abstractActionList.recordDisplayBegin + 1}" />
+			<f:param value="#{abstractActionList.recordDisplayEnd}" />
+			<f:param value="#{abstractActionList.recordCount}" />
+		</h:outputFormat>
+	
+		<rich:spacer width="5px"/>	
+	
+		<a4j:commandLink style="text-decoration: none;" 
+			action="#{abstractActionList.previous}" 
+			value="#{messages.left} #{abstractActionList.interval} ANTERIOR"
+			rendered="#{abstractActionList.previousExists}" 
+			reRender="#{dataTableId}" ajaxSingle="true">
+		</a4j:commandLink>						
+		
+		<rich:spacer width="5px"/>
+		
+		<a4j:commandLink style="text-decoration: none;"
+			action="#{abstractActionList.next}" 
+			value="PROXIMO #{abstractActionList.interval} #{messages.right}" 
+			rendered="#{abstractActionList.nextExists}"
+			reRender="#{dataTableId}" ajaxSingle="true" >
+		</a4j:commandLink>
+		
+	</div>
+						
+</ui:composition>

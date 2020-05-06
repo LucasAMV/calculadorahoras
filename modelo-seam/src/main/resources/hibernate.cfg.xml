@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory name="hibernateSessionFactory">
+		<property name="transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property>
+		<property name="cache.provider_class">org.hibernate.cache.HashtableCacheProvider</property>
+		<property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
+		<property name="connection.datasource">java:comp/env/jdbc/modelo</property>
+		<property name="transaction.flush_before_completion">true</property>
+		<property name="hbm2ddl.auto">nome</property>
+		<property name="show_sql">true</property>
+		<property name="hibernate.format_sql">true</property>
+		
+		<!-- mapeamento das entidades aqui conforme modelo 
+			<mapping class="pacote.NomeEntidadeDePersistencia"/>			
+		-->
+
+	</session-factory>
+</hibernate-configuration>

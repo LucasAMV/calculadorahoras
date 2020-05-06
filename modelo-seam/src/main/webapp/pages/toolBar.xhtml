@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets" 
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:s="http://jboss.com/products/seam/taglib">
+	
+	<a4j:form>
+		<rich:toolBar height="25" width="100%">
+			<rich:dropDownMenu submitMode="ajax" value="Administrativo">
+				<rich:menuItem value="Tabelas Basicas"/>
+			</rich:dropDownMenu>
+			
+			<rich:toolBarGroup location="right" itemSeparator="line">
+				<h:panelGroup>
+					<h:outputText value="Usuário: IVAN BATISTA MORENO / Cargo: ANALISTA DE SISTEMA"/><br/>
+					<h:outputText value="Último Acesso: 02/03/2010" style="font-size:10px;"/>
+					<h:outputText value=" Acesso de número: 100" style="font-size:10px;"/>
+				</h:panelGroup>
+				<a4j:commandButton title="Pagina Home" image="/inc/img/16/home.png" />
+				<a4j:commandButton title="Trocar Senha" image="/inc/img/16/replace.png" />
+				<a4j:commandButton title="Fazer Logoff" image="/inc/img/16/userBack.png" />
+			</rich:toolBarGroup>
+		</rich:toolBar>
+	</a4j:form>
+
+</ui:composition>
