@@ -4,97 +4,25 @@
 		<!-- Uso do Base64 https://stackoverflow.com/questions/9943771/adding-a-favicon-to-a-static-html-page -->
 		<!-- favicon from Freepik from flaticon.com em https://www.flaticon.com/free-icon/clock_2919780?term=time&page=1&position=2 -->
 		<link rel="shortcut icon" href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
-AAAAsQAAALEBxi1JjQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAPESURB
-VEiJnZZLbFRVGMd/58yd6YMWCp2SSiu0YtA0YovBNQuTEkUoWIpWamKFLjQGdcPCBY+1iSY1QtDW
-krSGxMCCUhIXkvoIqz6mSI1trG1tS58gdPpiZu6cz8W8e6eV+O3u/5zz//+/79z7fVexTmzulu2W
-psrAAaUoQdjh/SsUBiYQGQXVYYXt6/212eNrcah0YH6fFCnhDHACcCWveYdCq7cbhbomtn16oDZr
-9D8F8n1yWEErkJOMZ2oockPGiM2jgBAMO3wtiJi6wWOZ7WsKFPjkI4HPAQ2Q64ITXjiYBy9mRfbc
-XgQBxuaF7hlD59+GxwkxI4pPBo96Gh0CUefXYuQH8+CzYsi3EgbOnbvF4sIDjpw/Fsf8QWj7PUzv
-jEmIiDkSy0QDbLkjxdGyaIAPt0JzSSo5wFPbNuItKUjBNnrg/T0uKkt1DNJK6bbnrixti2eQ75Nv
-FdTHnDeXrHH70RKlCwEu+ML4opkINA3WeBrU5m7Z7nIxDLhyNHSVgTfqvO1KP48DNiffrUgr0Hn1
-Lkv+AK+/txeAhSB8+kuIFRuAsK3tEm1pDhN9FU8WJMgBRISmlj6aLvc5HHdevUtHSw+eLHccy/XA
-vqfjpXK5xaqyRPMqEkEO5aWSvPP2bgC+utQDEM8kRr6/bg+VteUpZ/YWan4YiZTJGHnNQngWIEvD
-C1nO2q4Wmca1JjnAjk0KjwuCYVBK7bSAQoBCd+RiGy90sbVgA2/VlDlFvvsTFv1UHq9wkP/8zS0e
-TT2k6sxR8jIUs8sCUBQvmDjNp0bORlTuJsz0ODI1se5WkyAzFjAJ7JoJRUROffBy2kO2bWioeYbR
-shWU1o71fQ2vxI36g3GFSQvFMMKuFQO/LUN5dnpX9W+UAnB7f+m67kfmE31KRIa1wM3Y4o35dc8+
-UfROm6Qn1aHFxXUgDNA0B3P2/yf3B+GnsbiAHXbZN/Q/u9U4issASwZOjz/BhacJI9DaH07urM1D
-1dkTGkDgLLAA0DEPZ++lF7n0dRe/tnSmJf9+MIxvNu7er7T7PES754MKdU8JbxIt1cU5qB9xlmtq
-0s/90bkUzB+Ai74wP44m2jXK1P1RraZg9cDplVOi+CImvEEnBk55dmRzbOCMzgs904bOMUMgaeAA
-Hw/UeL6MAY6u7O2VQyjagNxkPCM6MjNHbB4GhJBzZPpBHx+osTqSQccXc/8l1W4JO0XRCMSLFDAw
-HIDZZQe5EUWr0u7nV5OnzSA5ttyRYmWoUnAARSkm8dsiIsNaqZshbbcPVWev2Tv+BcsTkCvM69FE
-AAAAAElFTkSuQmCC" />
-	<!-- https://stackoverflow.com/questions/11038252/how-can-i-calculate-the-difference-between-two-times-that-are-in-24-hour-format -->
-	<script>
-		function f1() {
-			var d1 = new Date("01/01/2007 "+document.getElementById('h1').value);
-			var d2 = new Date("01/01/2007 "+document.getElementById('h2').value);
-			
-			var hStart = d1.getHours();
-			var hEnd = d2.getHours();
-
-			var hDiff = hEnd - hStart;
-
-			var mStart = d1.getMinutes();
-			var mEnd = d2.getMinutes();
-
-			var mDiff = mEnd-mStart;
-			if(mDiff < 0) {
-				mDiff += 60;
-				hDiff--;
-			}
-			if (mDiff > 59) {
-				mDiff -=60;
-				hDiff++;
-			}
-
-			var horasManha = (hDiff<10? '0'+hDiff : hDiff) + ':' + (mDiff<10? '0'+mDiff : mDiff);
-			console.log('Horas cumpridas: ' + horasManha);
-			document.getElementById('horasManha').value = horasManha;
-			
-			var horasNecessarias = new Date("01/01/2007 08:00");
-			
-			var hFaltando = horasNecessarias.getHours()-hDiff;
-			var mFaltando = horasNecessarias.getMinutes()-mDiff;
-			
-			if(mFaltando < 0) {
-				mFaltando += 60;
-				hFaltando--;
-			} 
-			if(mFaltando>59) {
-				mFaltando -= 60;
-				hFaltando++;
-			}
-			
-			var faltando = (hFaltando<10? '0'+hFaltando : hFaltando) + ':' + (mFaltando<10? '0'+mFaltando : mFaltando);
-			console.log('Horas faltando: ' + faltando);
-			document.getElementById('horasFaltando').value = faltando;
-			
-			var elem3 = document.getElementById('h3');
-			if(elem3.value != null && elem3.value.length != 0 && elem3.value != "00:00") {
-				var d3 = new Date("01/01/2007 "+document.getElementById('h3').value);
-				
-				var hFimIntervalo = d3.getHours();
-				var mFimIntervalo = d3.getMinutes();
-				
-				var hSaida = hFimIntervalo + hFaltando;
-				var mSaida = mFimIntervalo + mFaltando;
-				
-				if(mSaida < 0) {
-				mSaida += 60;
-				hSaida--;
-				} 
-				if(mSaida>59) {
-					mSaida -= 60;
-					hSaida++;
-				}
-				
-				var saidaAs = (hSaida<10? '0'+hSaida : hSaida) + ':' + (mSaida<10? '0'+mSaida : mSaida);
-				console.log('Sair às: ' + saidaAs);
-				document.getElementById('horaSaida').value = saidaAs;
-			}
-		}
-	</script>
-	
+										AAAAsQAAALEBxi1JjQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAPESURB
+										VEiJnZZLbFRVGMd/58yd6YMWCp2SSiu0YtA0YovBNQuTEkUoWIpWamKFLjQGdcPCBY+1iSY1QtDW
+										krSGxMCCUhIXkvoIqz6mSI1trG1tS58gdPpiZu6cz8W8e6eV+O3u/5zz//+/79z7fVexTmzulu2W
+										psrAAaUoQdjh/SsUBiYQGQXVYYXt6/212eNrcah0YH6fFCnhDHACcCWveYdCq7cbhbomtn16oDZr
+										9D8F8n1yWEErkJOMZ2oockPGiM2jgBAMO3wtiJi6wWOZ7WsKFPjkI4HPAQ2Q64ITXjiYBy9mRfbc
+										XgQBxuaF7hlD59+GxwkxI4pPBo96Gh0CUefXYuQH8+CzYsi3EgbOnbvF4sIDjpw/Fsf8QWj7PUzv
+										jEmIiDkSy0QDbLkjxdGyaIAPt0JzSSo5wFPbNuItKUjBNnrg/T0uKkt1DNJK6bbnrixti2eQ75Nv
+										FdTHnDeXrHH70RKlCwEu+ML4opkINA3WeBrU5m7Z7nIxDLhyNHSVgTfqvO1KP48DNiffrUgr0Hn1
+										Lkv+AK+/txeAhSB8+kuIFRuAsK3tEm1pDhN9FU8WJMgBRISmlj6aLvc5HHdevUtHSw+eLHccy/XA
+										vqfjpXK5xaqyRPMqEkEO5aWSvPP2bgC+utQDEM8kRr6/bg+VteUpZ/YWan4YiZTJGHnNQngWIEvD
+										C1nO2q4Wmca1JjnAjk0KjwuCYVBK7bSAQoBCd+RiGy90sbVgA2/VlDlFvvsTFv1UHq9wkP/8zS0e
+										TT2k6sxR8jIUs8sCUBQvmDjNp0bORlTuJsz0ODI1se5WkyAzFjAJ7JoJRUROffBy2kO2bWioeYbR
+										shWU1o71fQ2vxI36g3GFSQvFMMKuFQO/LUN5dnpX9W+UAnB7f+m67kfmE31KRIa1wM3Y4o35dc8+
+										UfROm6Qn1aHFxXUgDNA0B3P2/yf3B+GnsbiAHXbZN/Q/u9U4issASwZOjz/BhacJI9DaH07urM1D
+										1dkTGkDgLLAA0DEPZ++lF7n0dRe/tnSmJf9+MIxvNu7er7T7PES754MKdU8JbxIt1cU5qB9xlmtq
+										0s/90bkUzB+Ai74wP44m2jXK1P1RraZg9cDplVOi+CImvEEnBk55dmRzbOCMzgs904bOMUMgaeAA
+										Hw/UeL6MAY6u7O2VQyjagNxkPCM6MjNHbB4GhJBzZPpBHx+osTqSQccXc/8l1W4JO0XRCMSLFDAw
+										HIDZZQe5EUWr0u7nV5OnzSA5ttyRYmWoUnAARSkm8dsiIsNaqZshbbcPVWev2Tv+BcsTkCvM69FE
+										AAAAAElFTkSuQmCC" />
 	<style>
 		.label {
 			text-transform: uppercase;
@@ -115,19 +43,120 @@ AAAAAElFTkSuQmCC" />
 		<div class="label"><span>Entrada 2</span></div>
 		<input value="00:00" type="time" name="h3" id="h3" onfocusout="f1();" /></br>
 		
+		<div class="label"><span>Saída 2</span></div>
+		<input value="00:00" type="time" name="h4" id="h4" onfocusout="f1();" /></br>
+		
 		<div class="label"><span></span></div>
 		<input value="CALCULAR" type="button" name="calcular" id="calcular" onclick="f1();" /></br>
 		</br>
 		
 		<div class="label"><span>Feitas</span></div>
-		<input type="time" name="horasManha" id="horasManha" disabled></br>
+		<input type="time" name="horasFeitas" id="horasFeitas" disabled></br>
 		
 		<div class="label"><span>Faltam</span></div>
 		<input type="time" name="horasFaltando" id="horasFaltando" disabled></br>
 				
 		<div class="label"><span>Sair às</span></div>
-		<input type="time" name="horaSaida" id="horaSaida" disabled></br>
+		<input type="time" name="horaSair" id="horaSair" disabled></br>
 		</br>
       </form>
+	  
+	  <!-- https://stackoverflow.com/questions/11038252/how-can-i-calculate-the-difference-between-two-times-that-are-in-24-hour-format -->
+	<script>
+		function f1() {
+			var d1 = new Date("01/01/2007 "+document.getElementById('h1').value);
+			var d2 = new Date("01/01/2007 "+document.getElementById('h2').value);
+			
+			var hEntrada = d1.getHours();
+			var mEntrada = d1.getMinutes();
+			var hIntervalo = d2.getHours();
+			var mIntervalo = d2.getMinutes();
+
+			var hFeitas = hIntervalo - hEntrada;
+			var mFeitos = mIntervalo-mEntrada;
+			
+			if(mFeitos < 0) {
+				mFeitos += 60;
+				hFeitas--;
+			}
+			if (mFeitos > 59) {
+				mFeitos -=60;
+				hFeitas++;
+			}
+			
+			var horasFeitas = (hFeitas<10? '0'+hFeitas : hFeitas) + ':' + (mFeitos<10? '0'+mFeitos : mFeitos);
+			console.log('Horas feitas: ' + horasFeitas);
+			document.getElementById('horasFeitas').value = horasFeitas;
+			
+			var horasNecessarias = new Date("01/01/2007 08:00");
+			
+			var hFaltando = horasNecessarias.getHours()-hFeitas;
+			var mFaltando = horasNecessarias.getMinutes()-mFeitos;
+			
+			if(mFaltando < 0) {
+				mFaltando += 60;
+				hFaltando--;
+			} 
+			if(mFaltando>59) {
+				mFaltando -= 60;
+				hFaltando++;
+			}
+			
+			var faltando = (hFaltando<10? '0'+hFaltando : hFaltando) + ':' + (mFaltando<10? '0'+mFaltando : mFaltando);
+			console.log('Horas faltando: ' + faltando);
+			document.getElementById('horasFaltando').value = faltando;
+			
+			var horaSairSugerida = document.getElementById('h3');
+			if(horaSairSugerida.value != null && horaSairSugerida.value.length != 0 && horaSairSugerida.value != "00:00") {
+				var d3 = new Date("01/01/2007 "+horaSairSugerida.value);
+				
+				var hFimIntervalo = d3.getHours();
+				var mFimIntervalo = d3.getMinutes();
+				
+				var hSaidaSugerida = hFimIntervalo + hFaltando;
+				var mSaidaSugerida = mFimIntervalo + mFaltando;
+				
+				if(mSaidaSugerida < 0) {
+				mSaidaSugerida += 60;
+				hSaidaSugerida--;
+				} 
+				if(mSaidaSugerida>59) {
+					mSaidaSugerida -= 60;
+					hSaidaSugerida++;
+				}
+				
+				var sairAs = (hSaidaSugerida<10? '0'+hSaidaSugerida : hSaidaSugerida) + ':' + (mSaidaSugerida<10? '0'+mSaidaSugerida : mSaidaSugerida);
+				console.log('Sair às: ' + sairAs);
+				document.getElementById('horaSair').value = sairAs;
+				
+				var obj4 = document.getElementById('h4');
+				if(obj4 != null && obj4.value.length>0 && obj4.value != "00:00") {
+					var d4 = new Date("01/01/2007 "+obj4.value);
+					
+					var hSaida = d4.getHours();
+					var mSaida = d4.getMinutes();
+					
+					hFeitas += hSaida - hFimIntervalo;
+					mFeitos += mSaida - mFimIntervalo;
+					
+					if(mFeitos < 0) {
+						mFeitos += 60;
+						hFeitas--;
+					}
+					if (mFeitos > 59) {
+						mFeitos -= 60;
+						hFeitas++;
+					}
+					
+					horasFeitas = (hFeitas<10? '0'+hFeitas : hFeitas) + ':' + (mFeitos<10? '0'+mFeitos : mFeitos);
+					console.log('Horas feitas: ' + horasFeitas);
+					document.getElementById('horasFeitas').value = horasFeitas;
+					
+					if(hFeitas >= 8)
+						document.getElementById('horasFaltando').value = "00:00";
+				}
+			}
+		}
+	</script>
    </body>
 </html>
