@@ -29,51 +29,97 @@
 			display: inline-flex;
 			min-width: 110px;
 		}
+		.labelEcampo {
+			
+		}
 	</style>
 	
    </head>
    <body>
       <form name="calculator">
-		<div class="label"><span>Entrada 1</span></div>
-		<input value="00:00" type="time" name="h1" id="h1" required autofocus/></br>
+		<div class="labelEcampo">
+			<div class="label"><span>Entrada 1</span></div>
+			<input value="00:00" type="time" name="h1" id="h1" required autofocus/>
+		</div>
 		
-		<div class="label"><span>Saída 1</span></div>
-		<input value="00:00" type="time" name="h2" id="h2" onfocusout="f1();" required/></br>
+		<div class="labelEcampo">
+			<div class="label"><span>Saída 1</span></div>
+			<input value="00:00" type="time" name="h2" id="h2" onfocusout="f1();" required/>
+		</div>
 		
-		<div class="label"><span>Entrada 2</span></div>
-		<input value="00:00" type="time" name="h3" id="h3" onfocusout="f1();" /></br>
+		<div class="labelEcampo">
+			<div class="label"><span>Entrada 2</span></div>
+			<input value="00:00" type="time" name="h3" id="h3" onfocusout="f1();" />
+		</div>
 		
-		<div class="label"><span>Saída 2</span></div>
-		<input value="00:00" type="time" name="h4" id="h4" onfocusout="f1();" /></br>
+		<div class="labelEcampo">
+			<div class="label"><span>Saída 2</span></div>
+			<input value="00:00" type="time" name="h4" id="h4" onfocusout="f1();" />
+		</div>
 		
-		<div class="label"><span></span></div>
-		<input value="CALCULAR" type="button" name="calcular" id="calcular" onclick="f1();" /></br>
+		<div class="labelEcampo">
+			<div class="label"><span></span></div>
+			<input value="CALCULAR" type="button" name="calcular" id="calcular" onclick="f1();" />
+		</div>
 		</br>
 		
-		<div class="label"><span>Feitas</span></div>
-		<input type="time" name="horasFeitas" id="horasFeitas" disabled></br>
+		<div class="labelEcampo">
+			<div class="label"><span>Feitas</span></div>
+			<input type="time" name="horasFeitas" id="horasFeitas" disabled>
+		</div>
 		
-		<div class="label"><span>Faltam</span></div>
-		<input type="time" name="horasFaltando" id="horasFaltando" disabled></br>
-				
-		<div class="label"><span>Sair às</span></div>
-		<input type="time" name="horaSair" id="horaSair" disabled></br>
+		<div class="labelEcampo">
+			<div class="label"><span>Faltam</span></div>
+			<input value="08:00" type="time" name="horasFaltando" id="horasFaltando" disabled>
+		</div>
+		
+		<div class="labelEcampo">
+			<div class="label"><span>Sair às</span></div>
+			<input type="time" name="horaSair" id="horaSair" disabled>
+		</div>
 		</br>
       </form>
 	  
 	  <!-- https://stackoverflow.com/questions/11038252/how-can-i-calculate-the-difference-between-two-times-that-are-in-24-hour-format -->
 	<script>
 		function f1() {
-			var d1 = new Date("01/01/2007 "+document.getElementById('h1').value);
-			var d2 = new Date("01/01/2007 "+document.getElementById('h2').value);
+			horasFeitas = horasEntre(document.getElementById('h1').value, document.getElementById('h2').value);
+			document.getElementById('horasFeitas').value = horasEntreAsString(horasFeitas);
+			
+			var faltando;
+			if(horasFeitas.getHours() > 0 && horasFeitas.getMinutes() > 0) {
+				faltando = horasEntre(horasEntreAsString(horasFeitas), "08:00");
+				document.getElementById('horasFaltando').value = horasEntreAsString(faltando);
+			}
+			
+			var campo3 = document.getElementById('h3');
+			if(campo3.value != null && campo3.value.length != 0 && campo3.value != "00:00") {
+				var d3 = new Date("01/01/2007 "+campo3.value);
+				
+				document.getElementById('horaSair').value = somarHoras(d3,faltando);
+				
+				var campo4 = document.getElementById('h4');
+				if(campo4 != null && campo4.value.length>0 && campo4.value != "00:00") {
+					horasFeitas = somarHoras(horasFeitas,horasEntre(campo3.value,campo4.value));
+					
+					document.getElementById('horasFeitas').value = horasFeitas;
+					
+					if(new Date("01/01/2007 "+horasFeitas).getHours() >= 8)
+						document.getElementById('horasFaltando').value = "00:00";
+				}
+			}
+		};
+		function horasEntre(valueCampoData1,valueCampoData2) {
+			d1 = new Date("01/01/2007 "+ valueCampoData1);
+			d2 = new Date("01/01/2007 "+ valueCampoData2);
 			
 			var hEntrada = d1.getHours();
 			var mEntrada = d1.getMinutes();
-			var hIntervalo = d2.getHours();
-			var mIntervalo = d2.getMinutes();
+			var hSaida = d2.getHours();
+			var mSaida = d2.getMinutes();
 
-			var hFeitas = hIntervalo - hEntrada;
-			var mFeitos = mIntervalo-mEntrada;
+			var hFeitas = hSaida - hEntrada;
+			var mFeitos = mSaida - mEntrada;
 			
 			if(mFeitos < 0) {
 				mFeitos += 60;
@@ -85,77 +131,32 @@
 			}
 			
 			var horasFeitas = (hFeitas<10? '0'+hFeitas : hFeitas) + ':' + (mFeitos<10? '0'+mFeitos : mFeitos);
-			console.log('Horas feitas: ' + horasFeitas);
-			document.getElementById('horasFeitas').value = horasFeitas;
+			return new Date("01/01/2007 "+ horasFeitas);
+		}
+		function horasEntreAsString(dataParam) {
+			var hFeitas = dataParam.getHours();
+			var mFeitos = dataParam.getMinutes();
+			return (hFeitas<10? '0'+hFeitas : hFeitas) + ':' + (mFeitos<10? '0'+mFeitos : mFeitos);
+		}
+		function somarHoras(date1, date2) {
+			var h1 = date1.getHours();
+			var m1 = date1.getMinutes();
 			
-			var horasNecessarias = new Date("01/01/2007 08:00");
+			var h2 = date2.getHours();
+			var m2 = date2.getMinutes();
 			
-			var hFaltando = horasNecessarias.getHours()-hFeitas;
-			var mFaltando = horasNecessarias.getMinutes()-mFeitos;
+			var horasSomadas = h1 + h2;
+			var minutosSomados = m1 + m2;
 			
-			if(mFaltando < 0) {
-				mFaltando += 60;
-				hFaltando--;
+			while(minutosSomados < 0) {
+				minutosSomados += 60;
+				horasSomadas--;
 			} 
-			if(mFaltando>59) {
-				mFaltando -= 60;
-				hFaltando++;
+			while(minutosSomados>59) {
+				minutosSomados -= 60;
+				horasSomadas++;
 			}
-			
-			var faltando = (hFaltando<10? '0'+hFaltando : hFaltando) + ':' + (mFaltando<10? '0'+mFaltando : mFaltando);
-			console.log('Horas faltando: ' + faltando);
-			document.getElementById('horasFaltando').value = faltando;
-			
-			var horaSairSugerida = document.getElementById('h3');
-			if(horaSairSugerida.value != null && horaSairSugerida.value.length != 0 && horaSairSugerida.value != "00:00") {
-				var d3 = new Date("01/01/2007 "+horaSairSugerida.value);
-				
-				var hFimIntervalo = d3.getHours();
-				var mFimIntervalo = d3.getMinutes();
-				
-				var hSaidaSugerida = hFimIntervalo + hFaltando;
-				var mSaidaSugerida = mFimIntervalo + mFaltando;
-				
-				if(mSaidaSugerida < 0) {
-				mSaidaSugerida += 60;
-				hSaidaSugerida--;
-				} 
-				if(mSaidaSugerida>59) {
-					mSaidaSugerida -= 60;
-					hSaidaSugerida++;
-				}
-				
-				var sairAs = (hSaidaSugerida<10? '0'+hSaidaSugerida : hSaidaSugerida) + ':' + (mSaidaSugerida<10? '0'+mSaidaSugerida : mSaidaSugerida);
-				console.log('Sair às: ' + sairAs);
-				document.getElementById('horaSair').value = sairAs;
-				
-				var obj4 = document.getElementById('h4');
-				if(obj4 != null && obj4.value.length>0 && obj4.value != "00:00") {
-					var d4 = new Date("01/01/2007 "+obj4.value);
-					
-					var hSaida = d4.getHours();
-					var mSaida = d4.getMinutes();
-					
-					hFeitas += hSaida - hFimIntervalo;
-					mFeitos += mSaida - mFimIntervalo;
-					
-					if(mFeitos < 0) {
-						mFeitos += 60;
-						hFeitas--;
-					}
-					if (mFeitos > 59) {
-						mFeitos -= 60;
-						hFeitas++;
-					}
-					
-					horasFeitas = (hFeitas<10? '0'+hFeitas : hFeitas) + ':' + (mFeitos<10? '0'+mFeitos : mFeitos);
-					console.log('Horas feitas: ' + horasFeitas);
-					document.getElementById('horasFeitas').value = horasFeitas;
-					
-					if(hFeitas >= 8)
-						document.getElementById('horasFaltando').value = "00:00";
-				}
-			}
+			return (horasSomadas<10? '0'+horasSomadas : horasSomadas) + ':' + (minutosSomados<10? '0'+minutosSomados : minutosSomados);
 		}
 	</script>
    </body>
