@@ -18,7 +18,8 @@
 			if(mDiff < 0) {
 				mDiff += 60;
 				hDiff--;
-			} else if (mDiff > 59) {
+			}
+			if (mDiff > 59) {
 				mDiff -=60;
 				hDiff++;
 			}
@@ -29,14 +30,24 @@
 			
 			var horasNecessarias = new Date("01/01/2007 08:00");
 			
-			var hFaltando = horasNecessarias.getHours()-hDiff-1;
-			var mFaltando = horasNecessarias.getMinutes()-mDiff+60;
+			var hFaltando = horasNecessarias.getHours()-hDiff;
+			var mFaltando = horasNecessarias.getMinutes()-mDiff;
+			
+			if(mFaltando < 0) {
+				mFaltando += 60;
+				hFaltando--;
+			} 
+			if(mFaltando>59) {
+				mFaltando -= 60;
+				hFaltando++;
+			}
 			
 			var faltando = (hFaltando<10? '0'+hFaltando : hFaltando) + ':' + (mFaltando<10? '0'+mFaltando : mFaltando);
 			console.log('Horas faltando: ' + faltando);
 			document.getElementById('horasFaltando').value = faltando;
 			
-			if(document.getElementById('h3').value != null && document.getElementById('h3').value.length != 0) {
+			var elem3 = document.getElementById('h3');
+			if(elem3.value != null && elem3.value.length != 0 && elem3.value != "00:00") {
 				var d3 = new Date("01/01/2007 "+document.getElementById('h3').value);
 				
 				var hFimIntervalo = d3.getHours();
@@ -45,22 +56,54 @@
 				var hSaida = hFimIntervalo + hFaltando;
 				var mSaida = mFimIntervalo + mFaltando;
 				
+				if(mSaida < 0) {
+				mSaida += 60;
+				hSaida--;
+				} 
+				if(mSaida>59) {
+					mSaida -= 60;
+					hSaida++;
+				}
+				
 				var saidaAs = (hSaida<10? '0'+hSaida : hSaida) + ':' + (mSaida<10? '0'+mSaida : mSaida);
 				console.log('Sair às: ' + saidaAs);
 				document.getElementById('horaSaida').value = saidaAs;
 			}
 		}
 	</script>
+	
+	<style>
+		.label {
+			text-transform: uppercase;
+			display: inline-flex;
+			min-width: 110px;
+		}
+	</style>
+	
    </head>
    <body>
       <form name="calculator">
-		Entrada 1 	<input type="time" name="h1" id="h1" /></br>
-		Saída 1 	<input type="time" name="h2" id="h2" onfocusout="f1();" /></br>
-		Entrada 2 	<input type="time" name="h3" id="h3" onfocusout="f1();" /></br>
+		<div class="label"><span>Entrada 1</span></div>
+		<input value="00:00" type="time" name="h1" id="h1" required autofocus/></br>
+		
+		<div class="label"><span>Saída 1</span></div>
+		<input value="00:00" type="time" name="h2" id="h2" onfocusout="f1();" required/></br>
+		
+		<div class="label"><span>Entrada 2</span></div>
+		<input value="00:00" type="time" name="h3" id="h3" onfocusout="f1();" /></br>
+		
+		<div class="label"><span></span></div>
+		<input value="CALCULAR" type="button" name="calcular" id="calcular" onclick="f1();" /></br>
 		</br>
-		Horas feitas<input type="time" name="horasManha" id="horasManha" disabled></br>
-		Faltam 		<input type="time" name="horasFaltando" id="horasFaltando" disabled></br>
-		Saída às 	<input type="time" name="horaSaida" id="horaSaida" disabled></br>
+		
+		<div class="label"><span>Feitas</span></div>
+		<input type="time" name="horasManha" id="horasManha" disabled></br>
+		
+		<div class="label"><span>Faltam</span></div>
+		<input type="time" name="horasFaltando" id="horasFaltando" disabled></br>
+				
+		<div class="label"><span>Sair às</span></div>
+		<input type="time" name="horaSaida" id="horaSaida" disabled></br>
 		</br>
       </form>
    </body>
