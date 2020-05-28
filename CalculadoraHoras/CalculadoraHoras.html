@@ -1,0 +1,67 @@
+<html>
+   <head>
+	<!-- https://stackoverflow.com/questions/11038252/how-can-i-calculate-the-difference-between-two-times-that-are-in-24-hour-format -->
+	<script>
+		function f1() {
+			var d1 = new Date("01/01/2007 "+document.getElementById('h1').value);
+			var d2 = new Date("01/01/2007 "+document.getElementById('h2').value);
+			
+			var hStart = d1.getHours();
+			var hEnd = d2.getHours();
+
+			var hDiff = hEnd - hStart;
+
+			var mStart = d1.getMinutes();
+			var mEnd = d2.getMinutes();
+
+			var mDiff = mEnd-mStart;
+			if(mDiff < 0) {
+				mDiff += 60;
+				hDiff--;
+			} else if (mDiff > 59) {
+				mDiff -=60;
+				hDiff++;
+			}
+
+			var horasManha = (hDiff<10? '0'+hDiff : hDiff) + ':' + (mDiff<10? '0'+mDiff : mDiff);
+			console.log('Horas cumpridas: ' + horasManha);
+			document.getElementById('horasManha').value = horasManha;
+			
+			var horasNecessarias = new Date("01/01/2007 08:00");
+			
+			var hFaltando = horasNecessarias.getHours()-hDiff-1;
+			var mFaltando = horasNecessarias.getMinutes()-mDiff+60;
+			
+			var faltando = (hFaltando<10? '0'+hFaltando : hFaltando) + ':' + (mFaltando<10? '0'+mFaltando : mFaltando);
+			console.log('Horas faltando: ' + faltando);
+			document.getElementById('horasFaltando').value = faltando;
+			
+			if(document.getElementById('h3').value != null && document.getElementById('h3').value.length != 0) {
+				var d3 = new Date("01/01/2007 "+document.getElementById('h3').value);
+				
+				var hFimIntervalo = d3.getHours();
+				var mFimIntervalo = d3.getMinutes();
+				
+				var hSaida = hFimIntervalo + hFaltando;
+				var mSaida = mFimIntervalo + mFaltando;
+				
+				var saidaAs = (hSaida<10? '0'+hSaida : hSaida) + ':' + (mSaida<10? '0'+mSaida : mSaida);
+				console.log('Sair às: ' + saidaAs);
+				document.getElementById('horaSaida').value = saidaAs;
+			}
+		}
+	</script>
+   </head>
+   <body>
+      <form name="calculator">
+		Entrada 1 	<input type="time" name="h1" id="h1" /></br>
+		Saída 1 	<input type="time" name="h2" id="h2" onfocusout="f1();" /></br>
+		Entrada 2 	<input type="time" name="h3" id="h3" onfocusout="f1();" /></br>
+		</br>
+		Horas feitas<input type="time" name="horasManha" id="horasManha" disabled></br>
+		Faltam 		<input type="time" name="horasFaltando" id="horasFaltando" disabled></br>
+		Saída às 	<input type="time" name="horaSaida" id="horaSaida" disabled></br>
+		</br>
+      </form>
+   </body>
+</html>
