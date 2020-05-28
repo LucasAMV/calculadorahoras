@@ -93,7 +93,7 @@
 			}
 			
 			var campo3 = document.getElementById('h3');
-			if(campo3.value != null && campo3.value.length != 0 && campo3.value != "00:00") {
+			if(campo3.value != null && campo3.value.length > 0 && campo3.value != "00:00") {
 				var d3 = new Date("01/01/2007 "+campo3.value);
 				
 				document.getElementById('horaSair').value = somarHoras(d3,faltando);
@@ -107,6 +107,8 @@
 					if(new Date("01/01/2007 "+horasFeitas).getHours() >= 8)
 						document.getElementById('horasFaltando').value = "00:00";
 				}
+			} else {
+				document.getElementById('horaSair').value = null;
 			}
 		};
 		function horasEntre(valueCampoData1,valueCampoData2) {
