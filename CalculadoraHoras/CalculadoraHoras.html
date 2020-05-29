@@ -1,5 +1,8 @@
+<!DOCTYPE HTML>
 <html>
 	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>Calculadora de horas do dia</title>
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<!-- Uso do Base64 https://stackoverflow.com/questions/9943771/adding-a-favicon-to-a-static-html-page -->
 		<!-- favicon from Freepik from flaticon.com em https://www.flaticon.com/free-icon/clock_2919780?term=time&page=1&position=2 -->
@@ -60,6 +63,7 @@
 		<div class="labelEcampo">
 			<div class="label"><span></span></div>
 			<input value="CALCULAR" type="button" name="calcular" id="calcular" onclick="f1();" />
+			<input value="RESET" type="reset" name="reset" id="reset" />
 		</div>
 		</br>
 		
@@ -77,13 +81,14 @@
 			<div class="label"><span>Sair às</span></div>
 			<input type="time" name="horaSair" id="horaSair" disabled>
 		</div>
+		
 		</br>
       </form>
 	  
 	  <!-- https://stackoverflow.com/questions/11038252/how-can-i-calculate-the-difference-between-two-times-that-are-in-24-hour-format -->
 	<script>
 		function f1() {
-			horasFeitas = horasEntre(document.getElementById('h1').value, document.getElementById('h2').value);
+			var horasFeitas = horasEntre(document.getElementById('h1').value, document.getElementById('h2').value);
 			document.getElementById('horasFeitas').value = horasEntreAsString(horasFeitas);
 			
 			var faltando;
@@ -100,15 +105,19 @@
 				
 				var campo4 = document.getElementById('h4');
 				if(campo4 != null && campo4.value.length>0 && campo4.value != "00:00") {
-					horasFeitas = somarHoras(horasFeitas,horasEntre(campo3.value,campo4.value));
+					var horasFeitasFinal = somarHoras(horasFeitas,horasEntre(campo3.value,campo4.value));
 					
-					document.getElementById('horasFeitas').value = horasFeitas;
+					document.getElementById('horasFeitas').value = horasFeitasFinal;
 					
-					if(new Date("01/01/2007 "+horasFeitas).getHours() >= 8)
+					if(new Date("01/01/2007 "+horasFeitasFinal).getHours() >= 8) {
 						document.getElementById('horasFaltando').value = "00:00";
+					} else {
+						faltando = horasEntre(horasFeitasFinal, "08:00");
+						document.getElementById('horasFaltando').value = horasEntreAsString(faltando);
+					}
 				}
 			} else {
-				document.getElementById('horaSair').value = null;
+				document.getElementById('horaSair').value = "00:00";
 			}
 		};
 		function horasEntre(valueCampoData1,valueCampoData2) {
@@ -134,12 +143,12 @@
 			
 			var horasFeitas = (hFeitas<10? '0'+hFeitas : hFeitas) + ':' + (mFeitos<10? '0'+mFeitos : mFeitos);
 			return new Date("01/01/2007 "+ horasFeitas);
-		}
+		};
 		function horasEntreAsString(dataParam) {
 			var hFeitas = dataParam.getHours();
 			var mFeitos = dataParam.getMinutes();
 			return (hFeitas<10? '0'+hFeitas : hFeitas) + ':' + (mFeitos<10? '0'+mFeitos : mFeitos);
-		}
+		};
 		function somarHoras(date1, date2) {
 			var h1 = date1.getHours();
 			var m1 = date1.getMinutes();
@@ -159,7 +168,7 @@
 				horasSomadas++;
 			}
 			return (horasSomadas<10? '0'+horasSomadas : horasSomadas) + ':' + (minutosSomados<10? '0'+minutosSomados : minutosSomados);
-		}
+		};
 	</script>
    </body>
 </html>
