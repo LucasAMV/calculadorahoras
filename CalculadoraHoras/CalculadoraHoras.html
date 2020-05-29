@@ -3,7 +3,10 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<title>Calculadora de horas do dia</title>
+		
+		<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet"> 
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		
 		<!-- Uso do Base64 https://stackoverflow.com/questions/9943771/adding-a-favicon-to-a-static-html-page -->
 		<!-- favicon from Freepik from flaticon.com em https://www.flaticon.com/free-icon/clock_2919780?term=time&page=1&position=2 -->
 		<link rel="shortcut icon" href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
@@ -31,32 +34,42 @@
 			text-transform: uppercase;
 			display: inline-flex;
 			min-width: 110px;
+			font-family: 'Open Sans', sans-serif;
+		}
+		.alinharCampos {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
 		}
 		.labelEcampo {
-			
+			display: table;
+		}
+		body {
+			display: flex;
+			justify-content: center;
 		}
 	</style>
 	
    </head>
    <body>
-      <form name="calculator">
+      <form name="calculator" style="display: table;">
 		<div class="labelEcampo">
-			<div class="label"><span>Entrada 1</span></div>
+			<div class="label"><span>Entrada</span></div>
 			<input value="00:00" type="time" name="h1" id="h1" required autofocus/>
 		</div>
 		
 		<div class="labelEcampo">
-			<div class="label"><span>Saída 1</span></div>
+			<div class="label"><span>Saída</span></div>
 			<input value="00:00" type="time" name="h2" id="h2" onfocusout="f1();" required/>
 		</div>
 		
 		<div class="labelEcampo">
-			<div class="label"><span>Entrada 2</span></div>
+			<div class="label"><span>Entrada</span></div>
 			<input value="00:00" type="time" name="h3" id="h3" onfocusout="f1();" />
 		</div>
 		
 		<div class="labelEcampo">
-			<div class="label"><span>Saída 2</span></div>
+			<div class="label"><span>Saída</span></div>
 			<input value="00:00" type="time" name="h4" id="h4" onfocusout="f1();" />
 		</div>
 		
