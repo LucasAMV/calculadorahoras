@@ -2,13 +2,13 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<title>Calculadora de horas do dia</title>
+		<title>Calculadora de horas</title>
 		
 		<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet"> 
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		
 		<!-- Uso do Base64 https://stackoverflow.com/questions/9943771/adding-a-favicon-to-a-static-html-page -->
-		<!-- favicon from Freepik from flaticon.com em https://www.flaticon.com/free-icon/clock_2919780?term=time&page=1&position=2 -->
+		<!-- favicon from Freepik from flaticon.com in https://www.flaticon.com/free-icon/clock_2919780?term=time&page=1&position=2 -->
 		<link rel="shortcut icon" href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 										AAAAsQAAALEBxi1JjQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAPESURB
 										VEiJnZZLbFRVGMd/58yd6YMWCp2SSiu0YtA0YovBNQuTEkUoWIpWamKFLjQGdcPCBY+1iSY1QtDW
@@ -96,10 +96,11 @@
 		</div>
 		
 		</br>
-      </form>
+   </form>
 	  
-	  <!-- https://stackoverflow.com/questions/11038252/how-can-i-calculate-the-difference-between-two-times-that-are-in-24-hour-format -->
+	<!-- https://stackoverflow.com/questions/11038252/how-can-i-calculate-the-difference-between-two-times-that-are-in-24-hour-format -->
 	<script>
+		var PADRAO_REFERENCIA = "01/01/2007 ";
 		function f1() {
 			var horasFeitas = horasEntre(document.getElementById('h1').value, document.getElementById('h2').value);
 			document.getElementById('horasFeitas').value = horasEntreAsString(horasFeitas);
@@ -112,7 +113,7 @@
 			
 			var campo3 = document.getElementById('h3');
 			if(campo3.value != null && campo3.value.length > 0 && campo3.value != "00:00") {
-				var d3 = new Date("01/01/2007 "+campo3.value);
+				var d3 = new Date(PADRAO_REFERENCIA+campo3.value);
 				
 				document.getElementById('horaSair').value = somarHoras(d3,faltando);
 				
@@ -122,7 +123,7 @@
 					
 					document.getElementById('horasFeitas').value = horasFeitasFinal;
 					
-					if(new Date("01/01/2007 "+horasFeitasFinal).getHours() >= 8) {
+					if(new Date(PADRAO_REFERENCIA+horasFeitasFinal).getHours() >= 8) {
 						document.getElementById('horasFaltando').value = "00:00";
 					} else {
 						faltando = horasEntre(horasFeitasFinal, "08:00");
@@ -134,8 +135,8 @@
 			}
 		};
 		function horasEntre(valueCampoData1,valueCampoData2) {
-			d1 = new Date("01/01/2007 "+ valueCampoData1);
-			d2 = new Date("01/01/2007 "+ valueCampoData2);
+			d1 = new Date(PADRAO_REFERENCIA+ valueCampoData1);
+			d2 = new Date(PADRAO_REFERENCIA+ valueCampoData2);
 			
 			var hEntrada = d1.getHours();
 			var mEntrada = d1.getMinutes();
@@ -155,7 +156,7 @@
 			}
 			
 			var horasFeitas = (hFeitas<10? '0'+hFeitas : hFeitas) + ':' + (mFeitos<10? '0'+mFeitos : mFeitos);
-			return new Date("01/01/2007 "+ horasFeitas);
+			return new Date(PADRAO_REFERENCIA+horasFeitas);
 		};
 		function horasEntreAsString(dataParam) {
 			var hFeitas = dataParam.getHours();
