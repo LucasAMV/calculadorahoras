@@ -37,7 +37,7 @@
 			.label {
 				text-transform: uppercase;
 				display: inline-flex;
-				min-width: 110px;
+				min-width: 120px;
 				font-family: 'Open Sans', sans-serif;
 			}
 			.alinharCampos {
@@ -66,7 +66,7 @@
 				}
 				input[type="time"] {
 					max-height: 5vh;
-					font-size: 4vh;
+					font-size: 6vw;
 					max-width: 32vw;
 				}
 				input[type="button"],input[type="reset"] {
@@ -83,7 +83,7 @@
 				.label {
 					text-transform: uppercase;
 					display: inline-flex;
-					min-width: 110px;
+					font-size: 7vw;
 					font-family: 'Open Sans', sans-serif;
 					margin-right: 10px;
 					flex-grow: 1;
@@ -95,6 +95,12 @@
    
    <body>
       <form name="calculator">
+		<div class="labelEcampo">
+			<div class="label"><span>Preciso fazer</span></div>
+			<input value="08:00" type="time" name="h5" id="h5" required/>
+		</div>
+		</br >
+		
 		<div class="labelEcampo">
 			<div class="label"><span>Entrada</span></div>
 			<input value="00:00" type="time" name="h1" id="h1" required autofocus/>
@@ -145,12 +151,13 @@
 	<script>
 		var PADRAO_REFERENCIA = "01/01/2007 ";
 		function f1() {
+			var precisaFazer = document.getElementById('h5').value;
 			var horasFeitas = horasEntre(document.getElementById('h1').value, document.getElementById('h2').value);
 			document.getElementById('horasFeitas').value = horasEntreAsString(horasFeitas);
 			
 			var faltando;
 			if(horasFeitas.getHours() > 0 && horasFeitas.getMinutes() > 0) {
-				faltando = horasEntre(horasEntreAsString(horasFeitas), "08:00");
+				faltando = horasEntre(horasEntreAsString(horasFeitas), precisaFazer);
 				document.getElementById('horasFaltando').value = horasEntreAsString(faltando);
 			}
 			
@@ -169,7 +176,7 @@
 					if(new Date(PADRAO_REFERENCIA+horasFeitasFinal).getHours() >= 8) {
 						document.getElementById('horasFaltando').value = "00:00";
 					} else {
-						faltando = horasEntre(horasFeitasFinal, "08:00");
+						faltando = horasEntre(horasFeitasFinal, precisaFazer);
 						document.getElementById('horasFaltando').value = horasEntreAsString(faltando);
 					}
 				}
