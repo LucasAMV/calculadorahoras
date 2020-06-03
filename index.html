@@ -2,6 +2,10 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		
+		<!-- https://stackoverflow.com/questions/26888751/chrome-device-mode-emulation-media-queries-not-working -->
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+		
 		<title>Calculadora de horas</title>
 		
 		<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet"> 
@@ -42,18 +46,55 @@
 				align-items: center;
 			}
 			.labelEcampo {
-				display: table;
+				display: flex;
+				flex-direction: row;
 			}
 			body {
 				display: flex;
 				justify-content: center;
+			}
+			form {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				width: 100%;
+			}
+			@media only screen and (max-width: 600px) {
+				body {
+					background-color: white;
+					font-size: 4vh;
+				}
+				input[type="time"] {
+					max-height: 5vh;
+					font-size: 4vh;
+					max-width: 32vw;
+				}
+				input[type="button"],input[type="reset"] {
+					font-size: 3vh;
+				}
+				.labelEcampo {
+					display: flex;
+					flex-direction: row;
+					flex-wrap: nowrap;
+					justify-content: flex-end;
+					align-items: center;
+					width: 90%;
+				}
+				.label {
+					text-transform: uppercase;
+					display: inline-flex;
+					min-width: 110px;
+					font-family: 'Open Sans', sans-serif;
+					margin-right: 10px;
+					flex-grow: 1;
+				}
 			}
 		</style>
 	
    </head>
    
    <body>
-      <form name="calculator" style="display: table;">
+      <form name="calculator">
 		<div class="labelEcampo">
 			<div class="label"><span>Entrada</span></div>
 			<input value="00:00" type="time" name="h1" id="h1" required autofocus/>
@@ -74,6 +115,7 @@
 			<input value="00:00" type="time" name="h4" id="h4" onfocusout="f1();" />
 		</div>
 		
+		</br>
 		<div class="labelEcampo">
 			<div class="label"><span></span></div>
 			<input value="CALCULAR" type="button" name="calcular" id="calcular" onclick="f1();" />
