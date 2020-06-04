@@ -47,24 +47,24 @@
 		<div class="labelEcampo blocoEntradaSaida">
 			<div class="labelCampoEntradaSaida">
 				<div class="label"><span>Entrada</span></div>
-				<input type="text" maxlength="5" size="4" value="00:00" name="h1" id="h1" pattern="^[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}$" inputmode="numeric" required autofocus/>
+				<input type="text" maxlength="5" size="4" value="00:00" name="h1" id="h1" pattern="\d*" onclick="autoLimpar(this);" inputmode="numeric" required autofocus/>
 			</div>
 			
 			<div class="labelCampoEntradaSaida">
 				<div class="label"><span>Saída</span></div>
-				<input type="text" maxlength="5" size="4" value="00:00" name="h2" id="h2" pattern="^[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}$" inputmode="numeric" onfocusout="f1();" required/>
+				<input type="text" maxlength="5" size="4" value="00:00" name="h2" id="h2" pattern="\d*" onclick="autoLimpar(this);" inputmode="numeric" onfocusout="f1();" required/>
 			</div>
 		</div>
 		
 		<div class="labelEcampo blocoEntradaSaida">
 			<div class="labelCampoEntradaSaida">
 				<div class="label"><span>Entrada</span></div>
-				<input type="text" maxlength="5" size="4" value="00:00" name="h3" id="h3" pattern="^[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}$" inputmode="numeric" onfocusout="f1();" />
+				<input type="text" maxlength="5" size="4" value="00:00" name="h3" id="h3" pattern="\d*" onclick="autoLimpar(this);" inputmode="numeric" onfocusout="f1();" />
 			</div>
 			
 			<div class="labelCampoEntradaSaida">
 				<div class="label"><span>Saída</span></div>
-				<input type="text" maxlength="5" size="4" value="00:00" name="h4" id="h4" pattern="^[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}$" inputmode="numeric" onfocusout="f1();" />
+				<input type="text" maxlength="5" size="4" value="00:00" name="h4" id="h4" pattern="\d*" onclick="autoLimpar(this);" inputmode="numeric" onfocusout="f1();" />
 			</div>
 		</div>
 		
@@ -90,7 +90,7 @@
 		
 	</form>
 	<div class="footer">
-		v2.1
+		v2.2
 	</div>
 	<script src="js/funcoes.js"/></script>
 </body>
