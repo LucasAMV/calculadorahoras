@@ -14,22 +14,25 @@ form {
 	padding: 10px;
 	border-radius: 6px;
 }
-input[type="button"], input[type="reset"], input[type="time"] {
+button, input[type="reset"], input[type="text"] {
 	font-size: 18px;
 	
 	border-radius: 6px;
 	border: 2px solid white;
 }
-input[type="time"] {
+input[type="text"] {
 	background-color: lightsteelblue;
 	color: black;
 	
 }
-input[type="button"], input[type="reset"] {
+button, input[type="reset"] {
 	background-color: indianred;
 	color: white;
 	padding: 2px 10px;
 	border: 1px solid black;
+}
+button:active, input[type="reset"]:active {
+    background-color: brown;
 }
 .label {
 	text-transform: uppercase;
@@ -71,12 +74,12 @@ input[type="button"], input[type="reset"] {
 		font-size: 4vh;
 		margin: 10px 0px;
 	}
-	input[type="time"] {
+	input[type="text"] {
 		max-height: 5vh;
 		font-size: 6vw;
 		max-width: 30vw;
 	}
-	input[type="button"],input[type="reset"] {
+	button,input[type="reset"] {
 		font-size: 3vh;
 	}
 	form {

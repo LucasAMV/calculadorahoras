@@ -8,7 +8,7 @@ function f1() {
 	document.getElementById('horasFeitas').value = horasEntreAsString(horasFeitas);
 	
 	var faltando;
-	if(horasFeitas.getHours() > 0 && horasFeitas.getMinutes() > 0) {
+	if(horasFeitas.getHours() > 0 || horasFeitas.getMinutes() > 0) {
 		faltando = horasEntre(horasEntreAsString(horasFeitas), precisaFazer);
 		document.getElementById('horasFaltando').value = horasEntreAsString(faltando);
 	}

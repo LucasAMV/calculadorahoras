@@ -38,54 +38,54 @@
 </head>
 
 <body>
-	<form name="calculator">
+	<form id="form1" name="calculator">
 		<div class="labelEcampo" style="margin-bottom: 10px;">
 			<div class="label"><span>Preciso fazer</span></div>
-			<input value="08:00" type="time" name="h5" id="h5" required/>
+			<input value="08:00" type="text" size="5" name="h5" id="h5" required/>
 		</div>
 		
 		<div class="labelEcampo blocoEntradaSaida">
 			<div class="labelCampoEntradaSaida">
 				<div class="label"><span>Entrada</span></div>
-				<input value="00:00" type="time" name="h1" id="h1" min="00:00" max="23:59" required autofocus/>
+				<input type="text" maxlength="5" size="5" value="00:00" name="h1" id="h1" pattern="^[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}$" required autofocus/>
 			</div>
 			
 			<div class="labelCampoEntradaSaida">
 				<div class="label"><span>Saída</span></div>
-				<input value="00:00" type="time" name="h2" id="h2" min="00:00" max="23:59" onfocusout="f1();" required/>
+				<input type="text" maxlength="5" size="5" value="00:00" name="h2" id="h2" pattern="^[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}$" onfocusout="f1();" required/>
 			</div>
 		</div>
 		
 		<div class="labelEcampo blocoEntradaSaida">
 			<div class="labelCampoEntradaSaida">
 				<div class="label"><span>Entrada</span></div>
-				<input value="00:00" type="time" name="h3" id="h3" min="00:00" max="23:59" onfocusout="f1();" />
+				<input type="text" maxlength="5" size="5" value="00:00" name="h3" id="h3" pattern="^[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}$" onfocusout="f1();" required/>
 			</div>
 			
 			<div class="labelCampoEntradaSaida">
 				<div class="label"><span>Saída</span></div>
-				<input value="00:00" type="time" name="h4" id="h4" min="00:00" max="23:59" onfocusout="f1();" />
+				<input type="text" maxlength="5" size="5" value="00:00" name="h4" id="h4" pattern="^[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}$" onfocusout="f1();" required/>
 			</div>
 		</div>
 		
 		<div class="botoes">
-			<input value="CALCULAR" type="button" name="calcular" id="calcular" onclick="f1();" />
-			<input value="LIMPAR" type="reset" name="reset" id="reset" />
+			<button type="button" formaction="#" name="calcular" id="calcular" onclick="f1();">CALCULAR</button>
+			<button type="reset" name="reset" id="reset">LIMPAR</button>
 		</div>
 		
 		<div class="labelEcampo">
 			<div class="label"><span>Feitas</span></div>
-			<input value="00:00" type="time" name="horasFeitas" id="horasFeitas" disabled>
+			<input value="00:00" type="text" size="5" name="horasFeitas" id="horasFeitas" disabled>
 		</div>
 		
 		<div class="labelEcampo">
 			<div class="label"><span>Faltam</span></div>
-			<input value="08:00" type="time" name="horasFaltando" id="horasFaltando" disabled>
+			<input value="08:00" type="text" size="5" name="horasFaltando" id="horasFaltando" disabled>
 		</div>
 		
 		<div class="labelEcampo">
 			<div class="label"><span>Sair às</span></div>
-			<input value="00:00" type="time" name="horaSair" id="horaSair" disabled>
+			<input value="00:00" type="text" size="5" name="horaSair" id="horaSair" disabled>
 		</div>
 		
 	</form>
