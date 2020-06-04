@@ -4,6 +4,7 @@ var PADRAO_REFERENCIA = "01/01/2007 ";
 var REGEX_HORAS = new RegExp("^[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}$");
 var REGEX_HORAS_APLICAR_MASCARA = new RegExp("^[0-2]{1}[0-9]{1}$");
 var REGEX_DIGITO = new RegExp("^\\d+$");
+
 function f1() {
 	var precisaFazer = document.getElementById('h5').value;
 	var horasFeitas = horasEntre(document.getElementById('h1').value, document.getElementById('h2').value);
@@ -19,8 +20,6 @@ function f1() {
 	if(campo3.value != null && campo3.value.length > 0 && campo3.value != "00:00") {
 		var d3 = new Date(PADRAO_REFERENCIA+campo3.value);
 		
-		document.getElementById('horaSair').value = somarHoras(d3,faltando);
-		
 		var campo4 = document.getElementById('h4');
 		if(campo4 != null && campo4.value.length>0 && campo4.value != "00:00") {
 			var horasFeitasFinal = somarHoras(horasFeitas,horasEntre(campo3.value,campo4.value));
@@ -29,12 +28,15 @@ function f1() {
 			
 			if(new Date(PADRAO_REFERENCIA+horasFeitasFinal).getHours() >= 8) {
 				document.getElementById('horasFaltando').value = "00:00";
-				} else {
+				document.getElementById('horaSair').value = "00:00";
+			} else {
 				faltando = horasEntre(horasFeitasFinal, precisaFazer);
 				document.getElementById('horasFaltando').value = horasEntreAsString(faltando);
 			}
-		}
 		} else {
+			document.getElementById('horaSair').value = somarHoras(d3,faltando);
+		}
+	} else {
 		document.getElementById('horaSair').value = "00:00";
 	}
 };
