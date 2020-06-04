@@ -1,14 +1,43 @@
+body {
+	display: flex;
+	justify-content: center;
+	font-family: 'Open Sans', sans-serif;
+	background-color: whitesmoke;
+	box-sizing: border-box;
+}
+form {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	
+	padding: 10px;
+	border-radius: 6px;
+}
+input[type="button"], input[type="reset"], input[type="time"] {
+	font-size: 18px;
+	
+	border-radius: 6px;
+	border: 2px solid white;
+}
+input[type="time"] {
+	background-color: lightsteelblue;
+	color: black;
+	
+}
+input[type="button"], input[type="reset"] {
+	background-color: indianred;
+	color: white;
+	padding: 2px 10px;
+	border: 1px solid black;
+}
 .label {
 	text-transform: uppercase;
 	display: inline-flex;
-	min-width: 120px;
 }
 .label {
 	font-size: 20px;
 	min-width: 155px;
-}
-input[type="button"], input[type="reset"], input[type="time"] {
-	font-size: 18px;
 }
 .alinharCampos {
 	display: flex;
@@ -18,22 +47,27 @@ input[type="button"], input[type="reset"], input[type="time"] {
 .labelEcampo {
 	display: flex;
 	flex-direction: row;
-	margin-bottom: 1px;
+	
+	background-color: white;
+	border: 1px solid darkolivegreen;
+	padding: 5px;
+	border-radius: 5px;
 }
-body {
-	display: flex;
-	justify-content: center;
-	font-family: 'Open Sans', sans-serif;
+.botoes {
+	margin: 10px 0px;
 }
-form {
+.blocoEntradaSaida {
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+	flex-wrap: nowrap;
 }
+.labelCampoEntradaSaida {
+	display: flex;
+	flex-direction: row;
+}
+
 @media only screen and (max-width: 600px) {
 	body {
-		background-color: white;
 		font-size: 4vh;
 		margin: 10px 0px;
 	}
@@ -60,9 +94,16 @@ form {
 		width: 90%;
 	}
 	.label {
-		text-transform: uppercase;
-		display: inline-flex;
 		font-size: 7vw;
 		flex-grow: 1;
+	}
+	.blocoEntradaSaida {
+		display: flex;
+		flex-direction: column;
+		flex-wrap: nowrap;
+		width: 80%;
+	}
+	.labelCampoEntradaSaida {
+		width: 100%;
 	}
 }

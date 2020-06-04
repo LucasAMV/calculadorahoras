@@ -1,3 +1,5 @@
+<!-- https://stackoverflow.com/questions/11038252/how-can-i-calculate-the-difference-between-two-times-that-are-in-24-hour-format -->
+
 var PADRAO_REFERENCIA = "01/01/2007 ";
 
 function f1() {
