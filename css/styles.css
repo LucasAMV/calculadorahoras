@@ -13,7 +13,7 @@ form {
 	justify-content: center;
 	align-items: center;
 	
-	padding: 10px;
+	padding: 10px 0;
 	border-radius: 6px;
 }
 button, input[type="reset"], input[type="text"] {
@@ -78,6 +78,7 @@ button:active, input[type="reset"]:active {
 	body {
 		font-size: 4vh;
 		margin: 10px 0px;
+		width: 100%;
 	}
 	input[type="text"] {
 		max-height: 5vh;
