@@ -99,9 +99,19 @@ function aplicarMascara(elem) {
 
 //https://www.gavsblog.com/blog/detect-single-and-multiple-keypress-events-javascript
 //https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code
-/*
 document.getElementById('h1').addEventListener('keyup', (event) => {
 		if(event.code != "Backspace" && event.code != "Delete")
 			aplicarMascara(document.getElementById('h1'));
     });	
-*/
+document.getElementById('h2').addEventListener('keyup', (event) => {
+		if(event.code != "Backspace" && event.code != "Delete")
+			aplicarMascara(document.getElementById('h2'));
+    });	
+document.getElementById('h3').addEventListener('keyup', (event) => {
+		if(event.code != "Backspace" && event.code != "Delete")
+			aplicarMascara(document.getElementById('h3'));
+    });	
+document.getElementById('h4').addEventListener('keyup', (event) => {
+		if(event.code != "Backspace" && event.code != "Delete")
+			aplicarMascara(document.getElementById('h4'));
+    });	
