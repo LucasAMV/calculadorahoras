@@ -1,7 +1,8 @@
 <!-- https://stackoverflow.com/questions/11038252/how-can-i-calculate-the-difference-between-two-times-that-are-in-24-hour-format -->
 
 var PADRAO_REFERENCIA = "01/01/2007 ";
-
+var REGEX_HORAS = new RegExp("^[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}$");
+var REGEX_HORAS_APLICAR_MASCARA = new RegExp("^[0-2]{1}[0-9]{1}$");
 function f1() {
 	var precisaFazer = document.getElementById('h5').value;
 	var horasFeitas = horasEntre(document.getElementById('h1').value, document.getElementById('h2').value);
@@ -88,3 +89,19 @@ function somarHoras(date1, date2) {
 	}
 	return (horasSomadas<10? '0'+horasSomadas : horasSomadas) + ':' + (minutosSomados<10? '0'+minutosSomados : minutosSomados);
 };
+
+function aplicarMascara(elem) {
+	console.log(REGEX_HORAS_APLICAR_MASCARA.test(elem.value));
+	console.log(elem.value);
+	if(REGEX_HORAS_APLICAR_MASCARA.test(elem.value))
+		elem.value += ":";
+};
+
+//https://www.gavsblog.com/blog/detect-single-and-multiple-keypress-events-javascript
+//https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code
+/*
+document.getElementById('h1').addEventListener('keyup', (event) => {
+		if(event.code != "Backspace" && event.code != "Delete")
+			aplicarMascara(document.getElementById('h1'));
+    });	
+*/
