@@ -10,6 +10,8 @@
 		
 		<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet"> 
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link href="css/styles.css" rel="stylesheet">
+		<script src="js/funcoes.js"/></script>
 		
 		<!-- Uso do Base64 https://stackoverflow.com/questions/9943771/adding-a-favicon-to-a-static-html-page -->
 		<!-- favicon from Freepik from flaticon.com in https://www.flaticon.com/free-icon/clock_2919780?term=time&page=1&position=2 -->
@@ -34,72 +36,19 @@
 										HIDZZQe5EUWr0u7nV5OnzSA5ttyRYmWoUnAARSkm8dsiIsNaqZshbbcPVWev2Tv+BcsTkCvM69FE
 										AAAAAElFTkSuQmCC" />
 		<style>
-			.label {
-				text-transform: uppercase;
-				display: inline-flex;
-				min-width: 120px;
-				font-family: 'Open Sans', sans-serif;
-			}
-			.alinharCampos {
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-			}
-			.labelEcampo {
-				display: flex;
-				flex-direction: row;
-			}
-			body {
-				display: flex;
-				justify-content: center;
-			}
-			form {
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-				width: 100%;
-			}
-			@media only screen and (max-width: 600px) {
-				body {
-					background-color: white;
-					font-size: 4vh;
-					margin: 10px 0px;
-				}
-				input[type="time"] {
-					max-height: 5vh;
-					font-size: 6vw;
-					max-width: 30vw;
-				}
-				input[type="button"],input[type="reset"] {
-					font-size: 3vh;
-				}
-				.labelEcampo {
-					display: flex;
-					flex-direction: row;
-					flex-wrap: nowrap;
-					justify-content: flex-end;
-					align-items: center;
-					width: 90%;
-				}
-				.label {
-					text-transform: uppercase;
-					display: inline-flex;
-					font-size: 7vw;
-					font-family: 'Open Sans', sans-serif;
-					flex-grow: 1;
-				}
-			}
+		<style>
+		<style>
+			
 		</style>
 	
    </head>
    
    <body>
       <form name="calculator">
-		<div class="labelEcampo">
+		<div class="labelEcampo" style="margin-bottom: 10px;">
 			<div class="label"><span>Preciso fazer</span></div>
 			<input value="08:00" type="time" name="h5" id="h5" required/>
 		</div>
-		</br >
 		
 		<div class="labelEcampo">
 			<div class="label"><span>Entrada</span></div>
@@ -121,13 +70,11 @@
 			<input value="00:00" type="time" name="h4" id="h4" onfocusout="f1();" />
 		</div>
 		
-		</br>
-		<div class="labelEcampo">
+		<div class="labelEcampo" style="margin: 10px 0px;">
 			<div class="label"><span></span></div>
 			<input value="CALCULAR" type="button" name="calcular" id="calcular" onclick="f1();" />
 			<input value="RESET" type="reset" name="reset" id="reset" />
 		</div>
-		</br>
 		
 		<div class="labelEcampo">
 			<div class="label"><span>Feitas</span></div>
@@ -144,95 +91,11 @@
 			<input type="time" name="horaSair" id="horaSair" disabled>
 		</div>
 		
-		</br>
    </form>
 	  
 	<!-- https://stackoverflow.com/questions/11038252/how-can-i-calculate-the-difference-between-two-times-that-are-in-24-hour-format -->
 	<script>
-		var PADRAO_REFERENCIA = "01/01/2007 ";
-		function f1() {
-			var precisaFazer = document.getElementById('h5').value;
-			var horasFeitas = horasEntre(document.getElementById('h1').value, document.getElementById('h2').value);
-			document.getElementById('horasFeitas').value = horasEntreAsString(horasFeitas);
-			
-			var faltando;
-			if(horasFeitas.getHours() > 0 && horasFeitas.getMinutes() > 0) {
-				faltando = horasEntre(horasEntreAsString(horasFeitas), precisaFazer);
-				document.getElementById('horasFaltando').value = horasEntreAsString(faltando);
-			}
-			
-			var campo3 = document.getElementById('h3');
-			if(campo3.value != null && campo3.value.length > 0 && campo3.value != "00:00") {
-				var d3 = new Date(PADRAO_REFERENCIA+campo3.value);
-				
-				document.getElementById('horaSair').value = somarHoras(d3,faltando);
-				
-				var campo4 = document.getElementById('h4');
-				if(campo4 != null && campo4.value.length>0 && campo4.value != "00:00") {
-					var horasFeitasFinal = somarHoras(horasFeitas,horasEntre(campo3.value,campo4.value));
-					
-					document.getElementById('horasFeitas').value = horasFeitasFinal;
-					
-					if(new Date(PADRAO_REFERENCIA+horasFeitasFinal).getHours() >= 8) {
-						document.getElementById('horasFaltando').value = "00:00";
-					} else {
-						faltando = horasEntre(horasFeitasFinal, precisaFazer);
-						document.getElementById('horasFaltando').value = horasEntreAsString(faltando);
-					}
-				}
-			} else {
-				document.getElementById('horaSair').value = "00:00";
-			}
-		};
-		function horasEntre(valueCampoData1,valueCampoData2) {
-			d1 = new Date(PADRAO_REFERENCIA+ valueCampoData1);
-			d2 = new Date(PADRAO_REFERENCIA+ valueCampoData2);
-			
-			var hEntrada = d1.getHours();
-			var mEntrada = d1.getMinutes();
-			var hSaida = d2.getHours();
-			var mSaida = d2.getMinutes();
-
-			var hFeitas = hSaida - hEntrada;
-			var mFeitos = mSaida - mEntrada;
-			
-			if(mFeitos < 0) {
-				mFeitos += 60;
-				hFeitas--;
-			}
-			if (mFeitos > 59) {
-				mFeitos -=60;
-				hFeitas++;
-			}
-			
-			var horasFeitas = (hFeitas<10? '0'+hFeitas : hFeitas) + ':' + (mFeitos<10? '0'+mFeitos : mFeitos);
-			return new Date(PADRAO_REFERENCIA+horasFeitas);
-		};
-		function horasEntreAsString(dataParam) {
-			var hFeitas = dataParam.getHours();
-			var mFeitos = dataParam.getMinutes();
-			return (hFeitas<10? '0'+hFeitas : hFeitas) + ':' + (mFeitos<10? '0'+mFeitos : mFeitos);
-		};
-		function somarHoras(date1, date2) {
-			var h1 = date1.getHours();
-			var m1 = date1.getMinutes();
-			
-			var h2 = date2.getHours();
-			var m2 = date2.getMinutes();
-			
-			var horasSomadas = h1 + h2;
-			var minutosSomados = m1 + m2;
-			
-			while(minutosSomados < 0) {
-				minutosSomados += 60;
-				horasSomadas--;
-			} 
-			while(minutosSomados>59) {
-				minutosSomados -= 60;
-				horasSomadas++;
-			}
-			return (horasSomadas<10? '0'+horasSomadas : horasSomadas) + ':' + (minutosSomados<10? '0'+minutosSomados : minutosSomados);
-		};
+		
 	</script>
    </body>
 </html>
