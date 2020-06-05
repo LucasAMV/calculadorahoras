@@ -11,6 +11,7 @@
 		<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet"> 
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<link href="css/styles.css" rel="stylesheet">
+		<script src="js/before.js"/></script>
 	
 	
 	<!-- Uso do Base64 https://stackoverflow.com/questions/9943771/adding-a-favicon-to-a-static-html-page -->
@@ -47,24 +48,24 @@
 		<div class="labelEcampo blocoEntradaSaida">
 			<div class="labelCampoEntradaSaida">
 				<div class="label"><span>Entrada</span></div>
-				<input type="text" maxlength="5" value="00:00" name="h1" id="h1" pattern="^[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}$" onclick="autoLimpar(this);" inputmode="numeric" required autofocus/>
+				<input type="text" maxlength="5" value="00:00" name="h1" id="h1" pattern="^[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}$" onfocus="autoLimpar(this);" inputmode="numeric" autofocus />
 			</div>
 			
 			<div class="labelCampoEntradaSaida">
 				<div class="label"><span>Saída</span></div>
-				<input type="text" maxlength="5" value="00:00" name="h2" id="h2" pattern="^[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}$" onclick="autoLimpar(this);" inputmode="numeric" onfocusout="f1();" required/>
+				<input type="text" maxlength="5" value="00:00" name="h2" id="h2" pattern="^[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}$" onfocus="autoLimpar(this);" inputmode="numeric" onfocusout="f1();" />
 			</div>
 		</div>
 		
 		<div class="labelEcampo blocoEntradaSaida">
 			<div class="labelCampoEntradaSaida">
 				<div class="label"><span>Entrada</span></div>
-				<input type="text" maxlength="5" value="00:00" name="h3" id="h3" pattern="^[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}$" onclick="autoLimpar(this);" inputmode="numeric" onfocusout="f1();" />
+				<input type="text" maxlength="5" value="00:00" name="h3" id="h3" pattern="^[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}$" onfocus="autoLimpar(this);" inputmode="numeric" onfocusout="f1();" />
 			</div>
 			
 			<div class="labelCampoEntradaSaida">
 				<div class="label"><span>Saída</span></div>
-				<input type="text" maxlength="5" value="00:00" name="h4" id="h4" pattern="^[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}$" onclick="autoLimpar(this);" inputmode="numeric" onfocusout="f1();" />
+				<input type="text" maxlength="5" value="00:00" name="h4" id="h4" pattern="^[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}$" onfocus="autoLimpar(this);" inputmode="numeric" onfocusout="f1();" />
 			</div>
 		</div>
 		
@@ -75,22 +76,22 @@
 		
 		<div class="labelEcampo">
 			<div class="label"><span>Feitas</span></div>
-			<input value="00:00" type="text" name="horasFeitas" id="horasFeitas" disabled>
+			<input value="00:00" type="text" name="horasFeitas" id="horasFeitas" class="inputsReadOnly" disabled>
 		</div>
 		
 		<div class="labelEcampo">
 			<div class="label"><span>Faltam</span></div>
-			<input value="08:00" type="text" name="horasFaltando" id="horasFaltando" disabled>
+			<input value="08:00" type="text" name="horasFaltando" id="horasFaltando" class="inputsReadOnly" disabled>
 		</div>
 		
 		<div class="labelEcampo">
 			<div class="label"><span>Sair às</span></div>
-			<input value="00:00" type="text" name="horaSair" id="horaSair" disabled>
+			<input value="00:00" type="text" name="horaSair" id="horaSair" class="inputsReadOnly" disabled>
 		</div>
 		
 	</form>
 	<div class="footer">
-		v2.6
+		v2.7
 	</div>
 	<script src="js/funcoes.js"/></script>
 </body>

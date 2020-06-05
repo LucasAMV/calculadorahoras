@@ -4,6 +4,7 @@ var PADRAO_REFERENCIA = "01/01/2007 ";
 var REGEX_HORAS = new RegExp("^[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}$");
 var REGEX_HORAS_APLICAR_MASCARA = new RegExp("^[0-2]{1}[0-9]{1}$");
 var REGEX_DIGITO = new RegExp("^\\d+$");
+var usuarioClicouPrimeiroCampo = false;
 
 function f1() {
 	var precisaFazer = document.getElementById('h5').value;
@@ -29,14 +30,14 @@ function f1() {
 			if(new Date(PADRAO_REFERENCIA+horasFeitasFinal).getHours() >= 8) {
 				document.getElementById('horasFaltando').value = "00:00";
 				document.getElementById('horaSair').value = "00:00";
-			} else {
+				} else {
 				faltando = horasEntre(horasFeitasFinal, precisaFazer);
 				document.getElementById('horasFaltando').value = horasEntreAsString(faltando);
 			}
-		} else {
+			} else {
 			document.getElementById('horaSair').value = somarHoras(d3,faltando);
 		}
-	} else {
+		} else {
 		document.getElementById('horaSair').value = "00:00";
 	}
 };
@@ -93,33 +94,38 @@ function somarHoras(date1, date2) {
 	return (horasSomadas<10? '0'+horasSomadas : horasSomadas) + ':' + (minutosSomados<10? '0'+minutosSomados : minutosSomados);
 };
 
-function autoLimpar(elem) {
-	elem.value=='00:00'? elem.value='' : elem.value;
-}
-
 function aplicarMascara(elem) {
-	console.log(REGEX_HORAS_APLICAR_MASCARA.test(elem.value));
-	console.log(elem.value);
 	if(REGEX_HORAS_APLICAR_MASCARA.test(elem.value))
-		elem.value += ":";
+	elem.value += ":";
 };
 
 function avaliarFormatacao(key, id) {
-	if(REGEX_DIGITO.test(key))
-			aplicarMascara(document.getElementById(id));
-}
+	if(REGEX_DIGITO.test(key)) {
+		usuarioClicouPrimeiroCampo = true;
+		aplicarMascara(document.getElementById(id));
+	}
+};
+
+function isCampoPreenchido(campoValue, idProximoCampo) {
+	if(usuarioClicouPrimeiroCampo && REGEX_HORAS.test(campoValue) && idProximoCampo!=null)
+	document.getElementById(idProximoCampo).focus();
+};
 
 //https://www.gavsblog.com/blog/detect-single-and-multiple-keypress-events-javascript
 //https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code
 document.getElementById('h1').addEventListener('keyup', (event) => {
 	avaliarFormatacao(event.key, 'h1');
+	isCampoPreenchido(document.getElementById('h1').value, 'h2');
 });	
 document.getElementById('h2').addEventListener('keyup', (event) => {
 	avaliarFormatacao(event.key, 'h2');
+	isCampoPreenchido(document.getElementById('h2').value, 'h3');
 });	
 document.getElementById('h3').addEventListener('keyup', (event) => {
 	avaliarFormatacao(event.key, 'h3');
+	isCampoPreenchido(document.getElementById('h3').value, 'h4');
 });	
 document.getElementById('h4').addEventListener('keyup', (event) => {
 	avaliarFormatacao(event.key, 'h4');
+	isCampoPreenchido(document.getElementById('h4').value, 'calcular');
 });	
