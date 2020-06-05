@@ -1,5 +1,14 @@
+####################################################################################################################################
 https://stackoverflow.com/questions/16333790/node-js-quick-file-server-static-files-over-http?page=1&tab=votes#tab-top
+
 Iniciar um server local HTTP usando NodeJs:
 cd C:\Nz\Dev\Git\GitHub\CalculadoraHoras
 http-server -p 80 -i -d --log-ip
 
+####################################################################################################################################
+https://www.browsersync.io/#install
+
+Sincronizar atualizações em arquivos com o browser:
+browser-sync start --server --files "*"
+
+####################################################################################################################################
