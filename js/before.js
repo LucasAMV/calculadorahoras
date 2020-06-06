@@ -1,3 +1,10 @@
 function autoLimpar(elem) {
-	elem.value=='00:00'? elem.value='' : elem.value;
+	if(elem.value=='--:--')
+		elem.value='';
 };
+
+function isAlterado(elem) {
+	if(elem.value==null || elem.value=='')
+		elem.value=valorAnterior;
+	
+}
