@@ -76,18 +76,12 @@ function extrairMinutos(valueCampo) {
 	return parseInt(valueCampo.substr(valueCampo.length-2,2));
 }
 
-function horasEntreAsString(dataParam) {
-	var hFeitas = dataParam.getHours();
-	var mFeitos = dataParam.getMinutes();
-	return (hFeitas<10? '0'+hFeitas : hFeitas) + ':' + (mFeitos<10? '0'+mFeitos : mFeitos);
-};
-
-function somarHoras(date1, date2) {
-	var h1 = extrairHora(date1);
-	var m1 = extrairMinutos(date1);
+function somarHoras(horaValue1, horaValue2) {
+	var h1 = extrairHora(horaValue1);
+	var m1 = extrairMinutos(horaValue1);
 	
-	var h2 = extrairHora(date2);
-	var m2 = extrairMinutos(date2);
+	var h2 = extrairHora(horaValue2);
+	var m2 = extrairMinutos(horaValue2);
 	
 	var horasSomadas = h1 + h2;
 	var minutosSomados = m1 + m2;
