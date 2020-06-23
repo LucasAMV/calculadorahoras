@@ -32,14 +32,14 @@ function f1() {
 			document.getElementById('horaSair').value = "--:--";
 		}
 	}
-}
+};
 
 function contabilizarBloco(campo1, campo2) {
 	if(REGEX_HORAS.test(campo1) && REGEX_HORAS.test(campo2)) {
 		return horasEntre(campo1, campo2);
 	}
 	return null;
-}
+};
 
 function calcularHoraExtra(horasFeitasFinal, precisaFazer) {
 	var hFeitas = extrairHora(horasFeitasFinal);
@@ -56,7 +56,7 @@ function calcularHoraExtra(horasFeitasFinal, precisaFazer) {
 	var mFeitas = mFeitas - mPrecisaFazer;
 
 	return (hFeitas<10? '0'+hFeitas : hFeitas) + ':' + (mFeitas<10? '0'+mFeitas : mFeitas);
-}
+};
 
 function isCargaHorariaDoDiaCumprida(feitas,precisaFazer) {
 	var hFeitas = extrairHora(feitas);
@@ -73,7 +73,7 @@ function isCargaHorariaDoDiaCumprida(feitas,precisaFazer) {
 		}
 
 		return false;
-}
+};
 
 function horasEntre(valueCampoData1,valueCampoData2) {
 	var hEntrada = extrairHora(valueCampoData1);
@@ -106,10 +106,11 @@ function horasEntre(valueCampoData1,valueCampoData2) {
 function extrairHora(valueCampo) {
 	var valorString = valueCampo.length==4? valueCampo.charAt(0) : (valueCampo.substr(0,2).charAt(0)=='0'? valueCampo.substr(1,1) : valueCampo.substr(0,2));
 	return parseInt(valorString);
-}
+};
+
 function extrairMinutos(valueCampo) {
 	return parseInt(valueCampo.substr(valueCampo.length-2,2));
-}
+};
 
 function somarHoras(horaValue1, horaValue2) {
 	var h1 = extrairHora(horaValue1);
@@ -168,5 +169,5 @@ document.getElementById('h4').addEventListener('keyup', (event) => {
 });
 document.getElementById('h5').addEventListener('keyup', (event) => {
 	avaliarFormatacao(event.key, 'h5');
-	isCampoPreenchido(document.getElementById('h5').value, 'h1');
+	//isCampoPreenchido(document.getElementById('h5').value, 'h1');
 });
