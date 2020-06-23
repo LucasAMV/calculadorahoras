@@ -7,55 +7,89 @@ var REGEX_DIGITO = new RegExp("^\\d+$");
 
 function f1() {
 	var precisaFazer = document.getElementById('h5').value;
-	var campo1 = document.getElementById('h1').value;
-	var campo2 = document.getElementById('h2').value;
-	if(REGEX_HORAS.test(campo1) && REGEX_HORAS.test(campo2)) {
-		var horasFeitas = horasEntre(campo1, campo2);
-		document.getElementById('horasFeitas').value = horasFeitas;
-		
-		var faltando = horasEntre(horasFeitas, precisaFazer);
-		document.getElementById('horasFaltando').value = faltando;
-		
-		var campo3 = document.getElementById('h3').value;
-		if(REGEX_HORAS.test(campo3)) {
-			var campo4 = document.getElementById('h4').value;
-			if(REGEX_HORAS.test(campo4)) {
-				var horasFeitasFinal = somarHoras(horasFeitas,horasEntre(campo3,campo4));
-				
-				document.getElementById('horasFeitas').value = horasFeitasFinal;
-				
-				if(extrairHora(horasFeitasFinal) >= extrairHora(precisaFazer)) {
-					document.getElementById('horasFaltando').value = "00:00";
-					document.getElementById('horaSair').value = "00:00";
-				} else {
-					faltando = horasEntre(horasFeitasFinal, precisaFazer);
-					document.getElementById('horasFaltando').value = faltando;
-				}
-			} else {
-				document.getElementById('horaSair').value = somarHoras(campo3,faltando);
+	var blocoEntradasSaidas = document.getElementById('blocoEntradasSaidas');
+	var horasFeitasFinal = "00:00";
+	var faltando = precisaFazer;
+	for(var i=0; i < blocoEntradasSaidas.childElementCount; i++) {
+    var blocoAtual = blocoEntradasSaidas.children[i];
+		var entrada = blocoAtual.children[0].children[1].value;
+		var saida = blocoAtual.children[1].children[1].value;
+		if(REGEX_HORAS.test(entrada) && REGEX_HORAS.test(saida)) {
+			horasFeitasFinal = somarHoras(horasFeitasFinal, contabilizarBloco(entrada, saida));
+			document.getElementById('horasFeitas').value = horasFeitasFinal;
+			if(!isCargaHorariaDoDiaCumprida(horasFeitasFinal, precisaFazer)) {
+				document.getElementById('horasFaltando').value = horasEntre(horasFeitasFinal, precisaFazer);
 			}
-		} else {
+		} else if(REGEX_HORAS.test(entrada) && !REGEX_HORAS.test(saida)) {
+				faltando = horasEntre(horasFeitasFinal, precisaFazer);
+				document.getElementById('horasFaltando').value = faltando;
+				document.getElementById('horaSair').value = somarHoras(entrada,faltando);
+		}
+		if(isCargaHorariaDoDiaCumprida(horasFeitasFinal, precisaFazer)) {
+			document.getElementById('horasFaltando').value = "00:00";
+			document.getElementById('horasExtras').value = calcularHoraExtra(horasFeitasFinal, precisaFazer);
 			document.getElementById('horaSair').value = "--:--";
 		}
 	}
-};
+}
+
+function contabilizarBloco(campo1, campo2) {
+	if(REGEX_HORAS.test(campo1) && REGEX_HORAS.test(campo2)) {
+		return horasEntre(campo1, campo2);
+	}
+	return null;
+}
+
+function calcularHoraExtra(horasFeitasFinal, precisaFazer) {
+	var hFeitas = extrairHora(horasFeitasFinal);
+	var mFeitas = extrairMinutos(horasFeitasFinal);
+	var hPrecisaFazer = extrairHora(precisaFazer);
+	var mPrecisaFazer = extrairMinutos(precisaFazer);
+
+	if(mFeitas < mPrecisaFazer) {
+		hFeitas -= 1;
+		mFeitas += 60;
+	}
+
+	var hFeitas = hFeitas - hPrecisaFazer;
+	var mFeitas = mFeitas - mPrecisaFazer;
+
+	return (hFeitas<10? '0'+hFeitas : hFeitas) + ':' + (mFeitas<10? '0'+mFeitas : mFeitas);
+}
+
+function isCargaHorariaDoDiaCumprida(feitas,precisaFazer) {
+	var hFeitas = extrairHora(feitas);
+	var mFeitos = extrairMinutos(feitas);
+	var hNecessarias = extrairHora(precisaFazer);
+	var mNecessarios = extrairMinutos(precisaFazer);
+
+		if(hFeitas > hNecessarias)
+			return true;
+
+		if(hFeitas == hNecessarias) {
+			if(mFeitos >= mNecessarios)
+				return true;
+		}
+
+		return false;
+}
 
 function horasEntre(valueCampoData1,valueCampoData2) {
 	var hEntrada = extrairHora(valueCampoData1);
 	var mEntrada = extrairMinutos(valueCampoData1);
 	var hSaida = extrairHora(valueCampoData2);
 	var mSaida = extrairMinutos(valueCampoData2);
-	
+
 	if(hEntrada > hSaida) {
 		hSaida += 24;
 	} else if(hEntrada == hSaida) {
 		if(mEntrada >= mSaida)
 			hSaida += 24;
 	}
-	
+
 	var hFeitas = hSaida - hEntrada;
 	var mFeitos = mSaida - mEntrada;
-	
+
 	if(mFeitos < 0) {
 		mFeitos += 60;
 		hFeitas--;
@@ -64,7 +98,7 @@ function horasEntre(valueCampoData1,valueCampoData2) {
 		mFeitos -=60;
 		hFeitas++;
 	}
-	
+
 	return (hFeitas<10? '0'+hFeitas : hFeitas) + ':' + (mFeitos<10? '0'+mFeitos : mFeitos);
 };
 
@@ -79,17 +113,17 @@ function extrairMinutos(valueCampo) {
 function somarHoras(horaValue1, horaValue2) {
 	var h1 = extrairHora(horaValue1);
 	var m1 = extrairMinutos(horaValue1);
-	
+
 	var h2 = extrairHora(horaValue2);
 	var m2 = extrairMinutos(horaValue2);
-	
+
 	var horasSomadas = h1 + h2;
 	var minutosSomados = m1 + m2;
-	
+
 	while(minutosSomados < 0) {
 		minutosSomados += 60;
 		horasSomadas--;
-	} 
+	}
 	while(minutosSomados>59) {
 		minutosSomados -= 60;
 		horasSomadas++;
@@ -118,15 +152,15 @@ function isCampoPreenchido(campoValue, idProximoCampo) {
 document.getElementById('h1').addEventListener('keyup', (event) => {
 	avaliarFormatacao(event.key, 'h1');
 	isCampoPreenchido(document.getElementById('h1').value, 'h2');
-});	
+});
 document.getElementById('h2').addEventListener('keyup', (event) => {
 	avaliarFormatacao(event.key, 'h2');
 	isCampoPreenchido(document.getElementById('h2').value, 'h3');
-});	
+});
 document.getElementById('h3').addEventListener('keyup', (event) => {
 	avaliarFormatacao(event.key, 'h3');
 	isCampoPreenchido(document.getElementById('h3').value, 'h4');
-});	
+});
 document.getElementById('h4').addEventListener('keyup', (event) => {
 	avaliarFormatacao(event.key, 'h4');
 	isCampoPreenchido(document.getElementById('h4').value, 'calcular');
