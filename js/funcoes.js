@@ -19,6 +19,7 @@ function f1() {
 			document.getElementById('horasFeitas').value = horasFeitasFinal;
 			if(!isCargaHorariaDoDiaCumprida(horasFeitasFinal, precisaFazer)) {
 				document.getElementById('horasFaltando').value = horasEntre(horasFeitasFinal, precisaFazer);
+				document.getElementById('horaSair').value = "--:--";
 			}
 		} else if(REGEX_HORAS.test(entrada) && !REGEX_HORAS.test(saida)) {
 				faltando = horasEntre(horasFeitasFinal, precisaFazer);
