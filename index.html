@@ -19,41 +19,41 @@
 </head>
 
 <body>
-	<form id="form1" name="calculator">
+	<form id="form1" name="calculator" onreset="document.getElementById('h1').focus();">
 		<div class="labelEcampo" style="margin-bottom: 10px;">
 			<div class="label"><span>Preciso fazer</span></div>
-			<input value="08:00" type="text" name="horasNecessarias" id="horasNecessarias" onfocus="autoLimpar(this);" required />
+			<input value="08:00" type="text" id="horasNecessarias" onfocus="autoLimpar(this);" required />
 		</div>
 
 		<div id="blocosEntradasSaidas" class="blocosEntradasSaidas">
 			<div id="bloco0" class="labelEcampo blocoEntradaSaida">
 				<div class="labelCampoEntradaSaida">
 					<div class="label"><span>Entrada</span></div>
-					<input type="text" maxlength="5" value="--:--" name="h1" id="h1" pattern="^([0-2]{1})?[0-9]{1}:[0-5]{1}[0-9]{1}$" onfocus="autoLimpar(this);" inputmode="numeric" onblur="f1();" autofocus />
+					<input type="text" maxlength="5" id="h1" pattern="^([0-2]{1})?[0-9]{1}:[0-5]{1}[0-9]{1}$" onfocus="autoLimpar(this);" inputmode="numeric" onblur="f1();" autofocus />
 				</div>
 
 				<div class="labelCampoEntradaSaida">
 					<div class="label"><span>Saída</span></div>
-					<input type="text" maxlength="5" value="--:--" name="h2" id="h2" pattern="^([0-2]{1})?[0-9]{1}:[0-5]{1}[0-9]{1}$" onfocus="autoLimpar(this);" inputmode="numeric" onblur="f1();" />
+					<input type="text" maxlength="5" value="--:--" id="h2" pattern="^([0-2]{1})?[0-9]{1}:[0-5]{1}[0-9]{1}$" onfocus="autoLimpar(this);" inputmode="numeric" onblur="f1();" />
 				</div>
 			</div>
 
 			<div class="labelEcampo blocoEntradaSaida">
 				<div class="labelCampoEntradaSaida">
 					<div class="label"><span>Entrada</span></div>
-					<input type="text" maxlength="5" value="--:--" name="h3" id="h3" pattern="^([0-2]{1})?[0-9]{1}:[0-5]{1}[0-9]{1}$" onfocus="autoLimpar(this);" inputmode="numeric" onblur="f1();" />
+					<input type="text" maxlength="5" value="--:--" id="h3" pattern="^([0-2]{1})?[0-9]{1}:[0-5]{1}[0-9]{1}$" onfocus="autoLimpar(this);" inputmode="numeric" onblur="f1();" />
 				</div>
 
 				<div class="labelCampoEntradaSaida">
 					<div class="label"><span>Saída</span></div>
-					<input type="text" maxlength="5" value="--:--" name="h4" id="h4" pattern="^([0-2]{1})?[0-9]{1}:[0-5]{1}[0-9]{1}$" onfocus="autoLimpar(this);" inputmode="numeric" onblur="f1();" />
+					<input type="text" maxlength="5" value="--:--" id="h4" pattern="^([0-2]{1})?[0-9]{1}:[0-5]{1}[0-9]{1}$" onfocus="autoLimpar(this);" inputmode="numeric" onblur="f1();" />
 				</div>
 			</div>
 		</div>
 
 		<div class="botoes">
-			<button type="button" name="calcular" id="calcular" onclick="f1();">CALCULAR</button>
-			<button type="reset" name="reset" id="reset">LIMPAR</button>
+			<button type="button" id="calcular" onclick="f1();">CALCULAR</button>
+			<button type="reset" title="Clique ou pressione 'c' para limpar." onreset="resetAndAutoFocus();">LIMPAR</button>
 		</div>
 
 		<div class="labelEcampo">
@@ -78,7 +78,7 @@
 
 	</form>
 	<div class="footer">
-		v3.7
+		v3.9
 	</div>
 	<script src="js/funcoes.js"></script>
 </body>

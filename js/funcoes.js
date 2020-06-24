@@ -162,27 +162,23 @@ function isCampoPreenchido(campoValue, idProximoCampo) {
 
 function listenerKeyUp(event, campoMascarar, focarEmSeguida) {
 	event = event || window.event;
-	avaliarFormatacao(event.key, campoMascarar);
+	avaliarFormatacao(event.data, campoMascarar);
 	isCampoPreenchido(document.getElementById(campoMascarar).value, focarEmSeguida);
 }
 
-
+function resetAndAutoFocus() {
+	document.getElementById('form1').reset();
+	document.getElementById('h1').focus();
+}
 
 //https://www.gavsblog.com/blog/detect-single-and-multiple-keypress-events-javascript
 //https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code
 //https://stackoverflow.com/questions/6504914/how-can-i-capture-keyboard-events-are-from-which-keys
 //document.getElementById('h1').addEventListener("keyup", function (e) { listenerKeyUp(e,'h1','h2'); } )
-document.getElementById('horasNecessarias').onkeyup = function(e) { avaliarFormatacao(e.key, 'horasNecessarias'); };
-document.getElementById('horasNecessarias').oninput = function(e) { avaliarFormatacao(e.key, 'horasNecessarias'); };
-
-document.getElementById('h1').onkeyup = function(e) { listenerKeyUp(e,'h1','h2'); };
+document.getElementById('horasNecessarias').oninput = function(e) { avaliarFormatacao(e.data, 'horasNecessarias'); };
 document.getElementById('h1').oninput = function(e) { listenerKeyUp(e,'h1','h2'); };
-
-document.getElementById('h2').onkeyup = function(e) { listenerKeyUp(e,'h2','h3'); };
 document.getElementById('h2').oninput = function(e) { listenerKeyUp(e,'h2','h3'); };
-
-document.getElementById('h3').onkeyup = function(e) { listenerKeyUp(e,'h3','h4'); };
 document.getElementById('h3').oninput = function(e) { listenerKeyUp(e,'h3','h4'); };
-
-document.getElementById('h4').onkeyup = function(e) { listenerKeyUp(e,'h4','calcular'); };
 document.getElementById('h4').oninput = function(e) { listenerKeyUp(e,'h4','calcular'); };
+
+window.addEventListener('keyup', function(e) { if(e.key === 'c') resetAndAutoFocus(); })
