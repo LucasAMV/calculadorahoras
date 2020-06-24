@@ -19,7 +19,8 @@
 </head>
 
 <body>
-	<form id="form1" name="calculator" onreset="document.getElementById('h1').focus();">
+	<!-- https://www.codexpedia.com/javascript/submitting-html-form-without-reload-the-page/ -->
+	<form action="#" id="form1" name="calculator" onreset="document.getElementById('h1').focus();" onsubmit="f1();">
 		<div class="labelEcampo" style="margin-bottom: 10px;">
 			<div class="label"><span>Preciso fazer</span></div>
 			<input value="08:00" type="text" id="horasNecessarias" onfocus="autoLimpar(this);" required />
@@ -29,30 +30,30 @@
 			<div id="bloco0" class="labelEcampo blocoEntradaSaida">
 				<div class="labelCampoEntradaSaida">
 					<div class="label"><span>Entrada</span></div>
-					<input type="text" maxlength="5" id="h1" pattern="^([0-2]{1})?[0-9]{1}:[0-5]{1}[0-9]{1}$" onfocus="autoLimpar(this);" inputmode="numeric" onblur="f1();" autofocus />
+					<input type="text" maxlength="5" id="h1" pattern="^([0-9]{1}|1{1}[0-9]{1}|2{1}[0-3]):[0-5]{1}[0-9]{1}$|^(0{1}[0-9]{1}|1{1}[0-9]{1}|2{1}[0-3]):[0-5]{1}[0-9]{1}$" onfocus="autoLimpar(this);" inputmode="numeric" onblur="f1();" autofocus />
 				</div>
 
 				<div class="labelCampoEntradaSaida">
 					<div class="label"><span>Saída</span></div>
-					<input type="text" maxlength="5" value="--:--" id="h2" pattern="^([0-2]{1})?[0-9]{1}:[0-5]{1}[0-9]{1}$" onfocus="autoLimpar(this);" inputmode="numeric" onblur="f1();" />
+					<input type="text" maxlength="5" value="--:--" id="h2" pattern="^([0-9]{1}|1{1}[0-9]{1}|2{1}[0-3]):[0-5]{1}[0-9]{1}$|^(0{1}[0-9]{1}|1{1}[0-9]{1}|2{1}[0-3]):[0-5]{1}[0-9]{1}$" onfocus="autoLimpar(this);" inputmode="numeric" onblur="f1();" />
 				</div>
 			</div>
 
 			<div class="labelEcampo blocoEntradaSaida">
 				<div class="labelCampoEntradaSaida">
 					<div class="label"><span>Entrada</span></div>
-					<input type="text" maxlength="5" value="--:--" id="h3" pattern="^([0-2]{1})?[0-9]{1}:[0-5]{1}[0-9]{1}$" onfocus="autoLimpar(this);" inputmode="numeric" onblur="f1();" />
+					<input type="text" maxlength="5" value="--:--" id="h3" pattern="^([0-9]{1}|1{1}[0-9]{1}|2{1}[0-3]):[0-5]{1}[0-9]{1}$|^(0{1}[0-9]{1}|1{1}[0-9]{1}|2{1}[0-3]):[0-5]{1}[0-9]{1}$" onfocus="autoLimpar(this);" inputmode="numeric" onblur="f1();" />
 				</div>
 
 				<div class="labelCampoEntradaSaida">
 					<div class="label"><span>Saída</span></div>
-					<input type="text" maxlength="5" value="--:--" id="h4" pattern="^([0-2]{1})?[0-9]{1}:[0-5]{1}[0-9]{1}$" onfocus="autoLimpar(this);" inputmode="numeric" onblur="f1();" />
+					<input type="text" maxlength="5" value="--:--" id="h4" pattern="^([0-9]{1}|1{1}[0-9]{1}|2{1}[0-3]):[0-5]{1}[0-9]{1}$|^(0{1}[0-9]{1}|1{1}[0-9]{1}|2{1}[0-3]):[0-5]{1}[0-9]{1}$" onfocus="autoLimpar(this);" inputmode="numeric" onblur="f1();" />
 				</div>
 			</div>
 		</div>
 
 		<div class="botoes">
-			<button type="button" id="calcular" onclick="f1();">CALCULAR</button>
+			<button type="submit" id="calcular">CALCULAR</button>
 			<button type="reset" title="Clique ou pressione 'c' para limpar." onreset="resetAndAutoFocus();">LIMPAR</button>
 		</div>
 
