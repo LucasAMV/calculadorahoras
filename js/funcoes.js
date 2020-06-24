@@ -1,4 +1,4 @@
-<!-- https://stackoverflow.com/questions/11038252/how-can-i-calculate-the-difference-between-two-times-that-are-in-24-hour-format -->
+// https://stackoverflow.com/questions/11038252/how-can-i-calculate-the-difference-between-two-times-that-are-in-24-hour-format
 
 var REGEX_HORAS = new RegExp("^(([0-2]{1}[0-9]{1})|[0-9]{1}):[0-5]{1}[0-9]{1}$");
 var REGEX_HORAS_APLICAR_MASCARA = new RegExp("^([0-1]{1}[0-9]{1})$|^(2{1}[0-3]{1})$|^([3-9]{1})$");
@@ -6,7 +6,7 @@ var REGEX_HORAS_APLICAR_MASCARA = new RegExp("^([0-1]{1}[0-9]{1})$|^(2{1}[0-3]{1
 var REGEX_DIGITO = new RegExp("^\\d+$");
 
 function f1() {
-	var precisaFazer = document.getElementById('h5').value;
+	var precisaFazer = document.getElementById('horasNecessarias').value;
 	var blocoEntradasSaidas = document.getElementById('blocoEntradasSaidas');
 	var horasFeitasFinal = "00:00";
 	var faltando = precisaFazer;
@@ -32,14 +32,14 @@ function f1() {
 			document.getElementById('horaSair').value = "--:--";
 		}
 	}
-};
+}
 
 function contabilizarBloco(campo1, campo2) {
 	if(REGEX_HORAS.test(campo1) && REGEX_HORAS.test(campo2)) {
 		return horasEntre(campo1, campo2);
 	}
 	return null;
-};
+}
 
 function calcularHoraExtra(horasFeitasFinal, precisaFazer) {
 	var hFeitas = extrairHora(horasFeitasFinal);
@@ -52,11 +52,11 @@ function calcularHoraExtra(horasFeitasFinal, precisaFazer) {
 		mFeitas += 60;
 	}
 
-	var hFeitas = hFeitas - hPrecisaFazer;
-	var mFeitas = mFeitas - mPrecisaFazer;
+	hFeitas = hFeitas - hPrecisaFazer;
+	mFeitas = mFeitas - mPrecisaFazer;
 
 	return (hFeitas<10? '0'+hFeitas : hFeitas) + ':' + (mFeitas<10? '0'+mFeitas : mFeitas);
-};
+}
 
 function isCargaHorariaDoDiaCumprida(feitas,precisaFazer) {
 	var hFeitas = extrairHora(feitas);
@@ -73,7 +73,7 @@ function isCargaHorariaDoDiaCumprida(feitas,precisaFazer) {
 		}
 
 		return false;
-};
+}
 
 function horasEntre(valueCampoData1,valueCampoData2) {
 	var hEntrada = extrairHora(valueCampoData1);
@@ -101,16 +101,16 @@ function horasEntre(valueCampoData1,valueCampoData2) {
 	}
 
 	return (hFeitas<10? '0'+hFeitas : hFeitas) + ':' + (mFeitos<10? '0'+mFeitos : mFeitos);
-};
+}
 
 function extrairHora(valueCampo) {
 	var valorString = valueCampo.length==4? valueCampo.charAt(0) : (valueCampo.substr(0,2).charAt(0)=='0'? valueCampo.substr(1,1) : valueCampo.substr(0,2));
 	return parseInt(valorString);
-};
+}
 
 function extrairMinutos(valueCampo) {
 	return parseInt(valueCampo.substr(valueCampo.length-2,2));
-};
+}
 
 function somarHoras(horaValue1, horaValue2) {
 	var h1 = extrairHora(horaValue1);
@@ -131,43 +131,37 @@ function somarHoras(horaValue1, horaValue2) {
 		horasSomadas++;
 	}
 	return (horasSomadas<10? '0'+horasSomadas : horasSomadas) + ':' + (minutosSomados<10? '0'+minutosSomados : minutosSomados);
-};
+}
 
 function aplicarMascara(elem) {
 	if(REGEX_HORAS_APLICAR_MASCARA.test(elem.value))
 		elem.value += ":";
-};
+}
 
 function avaliarFormatacao(key, id) {
 	if(REGEX_DIGITO.test(key)) {
 		aplicarMascara(document.getElementById(id));
 	}
-};
+}
 
 function isCampoPreenchido(campoValue, idProximoCampo) {
-	if(REGEX_HORAS.test(campoValue) && idProximoCampo!=null)
+	if(REGEX_HORAS.test(campoValue) && idProximoCampo!==null)
 		document.getElementById(idProximoCampo).focus();
-};
+}
+
+function listenerKeyUp(event, campoMascarar, focarEmSeguida) {
+	event = event || window.event;
+	avaliarFormatacao(event.key, campoMascarar);
+	isCampoPreenchido(document.getElementById(campoMascarar).value, focarEmSeguida);
+}
 
 //https://www.gavsblog.com/blog/detect-single-and-multiple-keypress-events-javascript
 //https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code
-document.getElementById('h1').addEventListener('keyup', (event) => {
-	avaliarFormatacao(event.key, 'h1');
-	isCampoPreenchido(document.getElementById('h1').value, 'h2');
-});
-document.getElementById('h2').addEventListener('keyup', (event) => {
-	avaliarFormatacao(event.key, 'h2');
-	isCampoPreenchido(document.getElementById('h2').value, 'h3');
-});
-document.getElementById('h3').addEventListener('keyup', (event) => {
-	avaliarFormatacao(event.key, 'h3');
-	isCampoPreenchido(document.getElementById('h3').value, 'h4');
-});
-document.getElementById('h4').addEventListener('keyup', (event) => {
-	avaliarFormatacao(event.key, 'h4');
-	isCampoPreenchido(document.getElementById('h4').value, 'calcular');
-});
-document.getElementById('h5').addEventListener('keyup', (event) => {
-	avaliarFormatacao(event.key, 'h5');
-	//isCampoPreenchido(document.getElementById('h5').value, 'h1');
-});
+//https://stackoverflow.com/questions/6504914/how-can-i-capture-keyboard-events-are-from-which-keys
+document.getElementById('horasNecessarias').onkeyup = function(e) { avaliarFormatacao(e.key, 'horasNecessarias'); };
+document.getElementById('h1').onkeyup = function(e) { listenerKeyUp(e,'h1','h2'); };
+document.getElementById('h2').onkeyup = function(e) { listenerKeyUp(e,'h2','h3'); };
+document.getElementById('h3').onkeyup = function(e) { listenerKeyUp(e,'h3','h4'); };
+document.getElementById('h4').onkeyup = function(e) { listenerKeyUp(e,'h4','calcular'); };
+
+
