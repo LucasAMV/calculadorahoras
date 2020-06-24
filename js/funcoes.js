@@ -7,7 +7,7 @@ var REGEX_DIGITO = new RegExp("^\\d+$");
 
 function f1() {
 	var precisaFazer = document.getElementById('horasNecessarias').value;
-	var blocoEntradasSaidas = document.getElementById('blocoEntradasSaidas');
+	var blocoEntradasSaidas = document.getElementById('blocosEntradasSaidas');
 	var horasFeitasFinal = "00:00";
 	var faltando = precisaFazer;
 	for(var i=0; i < blocoEntradasSaidas.childElementCount; i++) {

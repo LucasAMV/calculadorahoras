@@ -117,7 +117,7 @@ button:active, input[type="reset"]:active {
 		width: 100%;
 	}
 	.blocosEntradasSaidas {
-		width: 90%;
+		width: 80%;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
