@@ -158,10 +158,18 @@ function listenerKeyUp(event, campoMascarar, focarEmSeguida) {
 //https://www.gavsblog.com/blog/detect-single-and-multiple-keypress-events-javascript
 //https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code
 //https://stackoverflow.com/questions/6504914/how-can-i-capture-keyboard-events-are-from-which-keys
-document.getElementById('horasNecessarias').onkeyup = function(e) { avaliarFormatacao(e.key, 'horasNecessarias'); };
-document.getElementById('h1').onkeyup = function(e) { listenerKeyUp(e,'h1','h2'); };
-document.getElementById('h2').onkeyup = function(e) { listenerKeyUp(e,'h2','h3'); };
-document.getElementById('h3').onkeyup = function(e) { listenerKeyUp(e,'h3','h4'); };
-document.getElementById('h4').onkeyup = function(e) { listenerKeyUp(e,'h4','calcular'); };
+//document.getElementById('h1').addEventListener("keyup", function (e) { listenerKeyUp(e,'h1','h2'); } )
+document.getElementById('horasNecessarias').onkeyup    = function(e) { avaliarFormatacao(e.key, 'horasNecessarias'); };
+document.getElementById('horasNecessarias').ontouchend = function(e) { avaliarFormatacao(e.key, 'horasNecessarias'); };
 
+document.getElementById('h1').onkeyup    = function(e) { listenerKeyUp(e,'h1','h2'); };
+document.getElementById('h1').ontouchend = function(e) { listenerKeyUp(e,'h1','h2'); };
 
+document.getElementById('h2').onkeyup    = function(e) { listenerKeyUp(e,'h2','h3'); };
+document.getElementById('h2').ontouchend = function(e) { listenerKeyUp(e,'h2','h3'); };
+
+document.getElementById('h3').onkeyup    = function(e) { listenerKeyUp(e,'h3','h4'); };
+document.getElementById('h3').ontouchend = function(e) { listenerKeyUp(e,'h3','h4'); };
+
+document.getElementById('h4').onkeyup    = function(e) { listenerKeyUp(e,'h4','calcular'); };
+document.getElementById('h4').ontouchend = function(e) { listenerKeyUp(e,'h4','calcular'); };
