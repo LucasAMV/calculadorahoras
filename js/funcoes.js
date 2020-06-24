@@ -1,6 +1,7 @@
 // https://stackoverflow.com/questions/11038252/how-can-i-calculate-the-difference-between-two-times-that-are-in-24-hour-format
 
-var REGEX_HORAS = new RegExp("^(([0-2]{1}[0-9]{1})|[0-9]{1}):[0-5]{1}[0-9]{1}$");
+var REGEX_HORAS_4_DIGITOS = new RegExp("^(0{1}[0-9]{1}|1{1}[0-9]{1}|2{1}[0-3]):[0-5]{1}[0-9]{1}$");
+var REGEX_HORAS_3_DIGITOS = new RegExp(    "^([0-9]{1}|1{1}[0-9]{1}|2{1}[0-3]):[0-5]{1}[0-9]{1}$");
 var REGEX_HORAS_APLICAR_MASCARA = new RegExp("^([0-1]{1}[0-9]{1})$|^(2{1}[0-3]{1})$|^([3-9]{1})$");
 
 var REGEX_DIGITO = new RegExp("^\\d+$");
@@ -14,14 +15,14 @@ function f1() {
     var blocoAtual = blocoEntradasSaidas.children[i];
 		var entrada = blocoAtual.children[0].children[1].value;
 		var saida = blocoAtual.children[1].children[1].value;
-		if(REGEX_HORAS.test(entrada) && REGEX_HORAS.test(saida)) {
+		if(isHoraValida(entrada) && isHoraValida(saida)) {
 			horasFeitasFinal = somarHoras(horasFeitasFinal, contabilizarBloco(entrada, saida));
 			document.getElementById('horasFeitas').value = horasFeitasFinal;
 			if(!isCargaHorariaDoDiaCumprida(horasFeitasFinal, precisaFazer)) {
 				document.getElementById('horasFaltando').value = horasEntre(horasFeitasFinal, precisaFazer);
 				document.getElementById('horaSair').value = "--:--";
 			}
-		} else if(REGEX_HORAS.test(entrada) && !REGEX_HORAS.test(saida)) {
+		} else if(isHoraValida(entrada) && !isHoraValida(saida)) {
 				faltando = horasEntre(horasFeitasFinal, precisaFazer);
 				document.getElementById('horasFaltando').value = faltando;
 				document.getElementById('horaSair').value = somarHoras(entrada,faltando);
@@ -34,8 +35,14 @@ function f1() {
 	}
 }
 
+function isHoraValida(value) {
+	if(REGEX_HORAS_3_DIGITOS.test(value) || REGEX_HORAS_4_DIGITOS.test(value))
+		return true;
+	return false;
+}
+
 function contabilizarBloco(campo1, campo2) {
-	if(REGEX_HORAS.test(campo1) && REGEX_HORAS.test(campo2)) {
+	if(isHoraValida(campo1) && isHoraValida(campo2)) {
 		return horasEntre(campo1, campo2);
 	}
 	return null;
@@ -104,7 +111,7 @@ function horasEntre(valueCampoData1,valueCampoData2) {
 }
 
 function extrairHora(valueCampo) {
-	var valorString = valueCampo.length==4? valueCampo.charAt(0) : (valueCampo.substr(0,2).charAt(0)=='0'? valueCampo.substr(1,1) : valueCampo.substr(0,2));
+	var valorString = valueCampo.length==3? valueCampo.charAt(0) : (valueCampo.substr(0,2).charAt(0)=='0'? valueCampo.substr(1,1) : valueCampo.substr(0,2));
 	return parseInt(valorString);
 }
 
@@ -134,8 +141,12 @@ function somarHoras(horaValue1, horaValue2) {
 }
 
 function aplicarMascara(elem) {
-	if(REGEX_HORAS_APLICAR_MASCARA.test(elem.value))
-		elem.value += ":";
+	var temp = elem.value.replace(/:/g,'');
+	if(temp.length == 3)
+		temp = temp.charAt(0) + ':' + temp.substring(1);
+	else if(temp.length == 4)
+		temp = temp.substring(0,2) + ':' + temp.substring(2);
+	elem.value = temp;
 }
 
 function avaliarFormatacao(key, id) {
@@ -145,7 +156,7 @@ function avaliarFormatacao(key, id) {
 }
 
 function isCampoPreenchido(campoValue, idProximoCampo) {
-	if(REGEX_HORAS.test(campoValue) && idProximoCampo!==null)
+	if(REGEX_HORAS_4_DIGITOS.test(campoValue) && idProximoCampo!==null)
 		document.getElementById(idProximoCampo).focus();
 }
 
@@ -155,21 +166,23 @@ function listenerKeyUp(event, campoMascarar, focarEmSeguida) {
 	isCampoPreenchido(document.getElementById(campoMascarar).value, focarEmSeguida);
 }
 
+
+
 //https://www.gavsblog.com/blog/detect-single-and-multiple-keypress-events-javascript
 //https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code
 //https://stackoverflow.com/questions/6504914/how-can-i-capture-keyboard-events-are-from-which-keys
 //document.getElementById('h1').addEventListener("keyup", function (e) { listenerKeyUp(e,'h1','h2'); } )
-document.getElementById('horasNecessarias').onkeyup    = function(e) { avaliarFormatacao(e.key, 'horasNecessarias'); };
-document.getElementById('horasNecessarias').ontouchend = function(e) { avaliarFormatacao(e.key, 'horasNecessarias'); };
+document.getElementById('horasNecessarias').onkeyup = function(e) { avaliarFormatacao(e.key, 'horasNecessarias'); };
+document.getElementById('horasNecessarias').oninput = function(e) { avaliarFormatacao(e.key, 'horasNecessarias'); };
 
-document.getElementById('h1').onkeyup    = function(e) { listenerKeyUp(e,'h1','h2'); };
-document.getElementById('h1').ontouchend = function(e) { listenerKeyUp(e,'h1','h2'); };
+document.getElementById('h1').onkeyup = function(e) { listenerKeyUp(e,'h1','h2'); };
+document.getElementById('h1').oninput = function(e) { listenerKeyUp(e,'h1','h2'); };
 
-document.getElementById('h2').onkeyup    = function(e) { listenerKeyUp(e,'h2','h3'); };
-document.getElementById('h2').ontouchend = function(e) { listenerKeyUp(e,'h2','h3'); };
+document.getElementById('h2').onkeyup = function(e) { listenerKeyUp(e,'h2','h3'); };
+document.getElementById('h2').oninput = function(e) { listenerKeyUp(e,'h2','h3'); };
 
-document.getElementById('h3').onkeyup    = function(e) { listenerKeyUp(e,'h3','h4'); };
-document.getElementById('h3').ontouchend = function(e) { listenerKeyUp(e,'h3','h4'); };
+document.getElementById('h3').onkeyup = function(e) { listenerKeyUp(e,'h3','h4'); };
+document.getElementById('h3').oninput = function(e) { listenerKeyUp(e,'h3','h4'); };
 
-document.getElementById('h4').onkeyup    = function(e) { listenerKeyUp(e,'h4','calcular'); };
-document.getElementById('h4').ontouchend = function(e) { listenerKeyUp(e,'h4','calcular'); };
+document.getElementById('h4').onkeyup = function(e) { listenerKeyUp(e,'h4','calcular'); };
+document.getElementById('h4').oninput = function(e) { listenerKeyUp(e,'h4','calcular'); };
