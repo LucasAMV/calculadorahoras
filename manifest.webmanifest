@@ -4,13 +4,12 @@
   "description": "Calcula as horas que você trabalhou e sugere uma hora de saída.",
   "icons": [
     {
-      "src": "images/relogio512_maskable_icon.png",
+      "src": "images/relogio512.png",
       "type": "image/png",
       "sizes": "512x512",
 	  "purpose":"any maskable"
     }
   ],
   "start_url": "index.html",
-  "display": "standalone",
-  "orientation": "portrait"
+  "display": "standalone"
 }
