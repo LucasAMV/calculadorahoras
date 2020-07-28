@@ -12,6 +12,3 @@ Sincronizar atualizações em arquivos com o browser:
 browser-sync start --server --files="css/*.css, js/*.js, *.html"
 
 ####################################################################################################################################
-
-Validar
-Calcular
