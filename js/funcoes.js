@@ -181,4 +181,24 @@ document.getElementById('h2').oninput = function(e) { listenerKeyUp(e,'h2','h3')
 document.getElementById('h3').oninput = function(e) { listenerKeyUp(e,'h3','h4'); };
 document.getElementById('h4').oninput = function(e) { listenerKeyUp(e,'h4','calcular'); };
 
-window.addEventListener('keyup', function(e) { if(e.key === 'c') resetAndAutoFocus(); })
+//https://developer.mozilla.org/en-US/docs/Web/API/File/File
+//https://ourcodeworld.com/articles/read/189/how-to-create-a-file-and-generate-a-download-with-javascript-in-the-browser-without-a-server
+function salvarEmArquivo() {
+	var conteudoArquivo = encodeURIComponent(document.getElementById('h1').value + "\n"
+											+document.getElementById('h2').value + "\n"
+											+document.getElementById('h3').value + "\n"
+											+document.getElementById('h4').value + "\n" );
+	
+	var element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + conteudoArquivo);
+    element.setAttribute('download', "meuPonto-"+(new Date().toLocaleDateString().replaceAll('/','-'))+".txt");
+
+    element.style.display = 'none';
+    document.body.appendChild(element);
+
+    element.click();
+
+    document.body.removeChild(element);
+}
+
+window.addEventListener('keyup', function(e) { if(e.key === 'c') resetAndAutoFocus(); });
