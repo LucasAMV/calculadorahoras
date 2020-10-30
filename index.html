@@ -18,6 +18,10 @@
 		<link rel="shortcut icon" href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAAsQAAALEBxi1JjQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAPESURBVEiJnZZLbFRVGMd/58yd6YMWCp2SSiu0YtA0YovBNQuTEkUoWIpWamKFLjQGdcPCBY+1iSY1QtDWkrSGxMCCUhIXkvoIqz6mSI1trG1tS58gdPpiZu6cz8W8e6eV+O3u/5zz//+/79z7fVexTmzulu2WpsrAAaUoQdjh/SsUBiYQGQXVYYXt6/212eNrcah0YH6fFCnhDHACcCWveYdCq7cbhbomtn16oDZr9D8F8n1yWEErkJOMZ2oockPGiM2jgBAMO3wtiJi6wWOZ7WsKFPjkI4HPAQ2Q64ITXjiYBy9mRfbcXgQBxuaF7hlD59+GxwkxI4pPBo96Gh0CUefXYuQH8+CzYsi3EgbOnbvF4sIDjpw/Fsf8QWj7PUzvjEmIiDkSy0QDbLkjxdGyaIAPt0JzSSo5wFPbNuItKUjBNnrg/T0uKkt1DNJK6bbnrixti2eQ75NvFdTHnDeXrHH70RKlCwEu+ML4opkINA3WeBrU5m7Z7nIxDLhyNHSVgTfqvO1KP48DNiffrUgr0Hn1Lkv+AK+/txeAhSB8+kuIFRuAsK3tEm1pDhN9FU8WJMgBRISmlj6aLvc5HHdevUtHSw+eLHccy/XAvqfjpXK5xaqyRPMqEkEO5aWSvPP2bgC+utQDEM8kRr6/bg+VteUpZ/YWan4YiZTJGHnNQngWIEvDC1nO2q4Wmca1JjnAjk0KjwuCYVBK7bSAQoBCd+RiGy90sbVgA2/VlDlFvvsTFv1UHq9wkP/8zS0eTT2k6sxR8jIUs8sCUBQvmDjNp0bORlTuJsz0ODI1se5WkyAzFjAJ7JoJRUROffBy2kO2bWioeYbRshWU1o71fQ2vxI36g3GFSQvFMMKuFQO/LUN5dnpX9W+UAnB7f+m67kfmE31KRIa1wM3Y4o35dc8+UfROm6Qn1aHFxXUgDNA0B3P2/yf3B+GnsbiAHXbZN/Q/u9U4issASwZOjz/BhacJI9DaH07urM1D1dkTGkDgLLAA0DEPZ++lF7n0dRe/tnSmJf9+MIxvNu7er7T7PES754MKdU8JbxIt1cU5qB9xlmtq0s/90bkUzB+Ai74wP44m2jXK1P1RraZg9cDplVOi+CImvEEnBk55dmRzbOCMzgs904bOMUMgaeAAHw/UeL6MAY6u7O2VQyjagNxkPCM6MjNHbB4GhJBzZPpBHx+osTqSQccXc/8l1W4JO0XRCMSLFDAwHIDZZQe5EUWr0u7nV5OnzSA5ttyRYmWoUnAARSkm8dsiIsNaqZshbbcPVWev2Tv+BcsTkCvM69FEAAAAAElFTkSuQmCC" />
 		<!-- Ícone que será adicionado na home screen do Android https://web.dev/add-manifest/	ver também https://web.dev/maskable-icon-audit/ -->
 		<link rel="manifest" href="manifest.webmanifest" crossorigin="anonymous">
+		
+		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+		<meta http-equiv="Pragma" content="no-cache" />
+		<meta http-equiv="Expires" content="0" />
 </head>
 
 <body>
@@ -32,24 +36,24 @@
 			<div id="bloco0" class="labelEcampo blocoEntradaSaida">
 				<div class="labelCampoEntradaSaida">
 					<div class="label"><span>Entrada</span></div>
-					<input type="text" maxlength="5" id="h1" pattern="^([0-9]{1}|1{1}[0-9]{1}|2{1}[0-3]):[0-5]{1}[0-9]{1}$|^(0{1}[0-9]{1}|1{1}[0-9]{1}|2{1}[0-3]):[0-5]{1}[0-9]{1}$" onfocus="autoLimpar(this);" inputmode="numeric" onblur="f1();" autofocus />
+					<input type="text" maxlength="5" id="h1" pattern="^([0-9]{1}|1{1}[0-9]{1}|2{1}[0-3]):[0-5]{1}[0-9]{1}$|^(0{1}[0-9]{1}|1{1}[0-9]{1}|2{1}[0-3]):[0-5]{1}[0-9]{1}$" onfocus="autoLimpar(this);" inputmode="decimal" onblur="f1();" autofocus />
 				</div>
 
 				<div class="labelCampoEntradaSaida">
 					<div class="label"><span>Saída</span></div>
-					<input type="text" maxlength="5" value="--:--" id="h2" pattern="^([0-9]{1}|1{1}[0-9]{1}|2{1}[0-3]):[0-5]{1}[0-9]{1}$|^(0{1}[0-9]{1}|1{1}[0-9]{1}|2{1}[0-3]):[0-5]{1}[0-9]{1}$" onfocus="autoLimpar(this);" inputmode="numeric" onblur="f1();" />
+					<input type="text" maxlength="5" value="--:--" id="h2" pattern="^([0-9]{1}|1{1}[0-9]{1}|2{1}[0-3]):[0-5]{1}[0-9]{1}$|^(0{1}[0-9]{1}|1{1}[0-9]{1}|2{1}[0-3]):[0-5]{1}[0-9]{1}$" onfocus="autoLimpar(this);" inputmode="decimal" onblur="f1();" />
 				</div>
 			</div>
 
 			<div class="labelEcampo blocoEntradaSaida">
 				<div class="labelCampoEntradaSaida">
 					<div class="label"><span>Entrada</span></div>
-					<input type="text" maxlength="5" value="--:--" id="h3" pattern="^([0-9]{1}|1{1}[0-9]{1}|2{1}[0-3]):[0-5]{1}[0-9]{1}$|^(0{1}[0-9]{1}|1{1}[0-9]{1}|2{1}[0-3]):[0-5]{1}[0-9]{1}$" onfocus="autoLimpar(this);" inputmode="numeric" onblur="f1();" />
+					<input type="text" maxlength="5" value="--:--" id="h3" pattern="^([0-9]{1}|1{1}[0-9]{1}|2{1}[0-3]):[0-5]{1}[0-9]{1}$|^(0{1}[0-9]{1}|1{1}[0-9]{1}|2{1}[0-3]):[0-5]{1}[0-9]{1}$" onfocus="autoLimpar(this);" inputmode="decimal" onblur="f1();" />
 				</div>
 
 				<div class="labelCampoEntradaSaida">
 					<div class="label"><span>Saída</span></div>
-					<input type="text" maxlength="5" value="--:--" id="h4" pattern="^([0-9]{1}|1{1}[0-9]{1}|2{1}[0-3]):[0-5]{1}[0-9]{1}$|^(0{1}[0-9]{1}|1{1}[0-9]{1}|2{1}[0-3]):[0-5]{1}[0-9]{1}$" onfocus="autoLimpar(this);" inputmode="numeric" onblur="f1();" />
+					<input type="text" maxlength="5" value="--:--" id="h4" pattern="^([0-9]{1}|1{1}[0-9]{1}|2{1}[0-3]):[0-5]{1}[0-9]{1}$|^(0{1}[0-9]{1}|1{1}[0-9]{1}|2{1}[0-3]):[0-5]{1}[0-9]{1}$" onfocus="autoLimpar(this);" inputmode="decimal" onblur="f1();" />
 				</div>
 			</div>
 		</div>
@@ -59,29 +63,37 @@
 			<button type="reset" title="Clique ou pressione 'c' para limpar." onreset="resetAndAutoFocus();">LIMPAR</button>
 		</div>
 
-		<div class="labelEcampo">
-			<div class="label"><span>Feitas</span></div>
-			<input value="--:--" type="text" name="horasFeitas" id="horasFeitas" class="inputsReadOnly" disabled>
+		<div class="labelEcampo blocoEntradaSaida">
+			<div class="labelCampoEntradaSaida">
+				<div class="label"><span>Feitas</span></div>
+				<input value="--:--" type="text" name="horasFeitas" id="horasFeitas" class="inputsReadOnly" disabled>
+			</div>
 		</div>
 
-		<div class="labelEcampo">
-			<div class="label"><span>Extras</span></div>
-			<input value="--:--" type="text" name="horasExtras" id="horasExtras" class="inputsReadOnly" disabled>
+		<div class="labelEcampo blocoEntradaSaida">
+			<div class="labelCampoEntradaSaida">
+				<div class="label"><span>Extras</span></div>
+				<input value="--:--" type="text" name="horasExtras" id="horasExtras" class="inputsReadOnly" disabled>
+			</div>
 		</div>
 
-		<div class="labelEcampo">
-			<div class="label"><span>Faltam</span></div>
-			<input value="08:00" type="text" name="horasFaltando" id="horasFaltando" class="inputsReadOnly" disabled>
+		<div class="labelEcampo blocoEntradaSaida">
+			<div class="labelCampoEntradaSaida">
+				<div class="label"><span>Faltam</span></div>
+				<input value="08:00" type="text" name="horasFaltando" id="horasFaltando" class="inputsReadOnly" disabled>
+			</div>
 		</div>
 
-		<div class="labelEcampo">
-			<div class="label"><span>Sair às</span></div>
-			<input value="--:--" type="text" name="horaSair" id="horaSair" class="inputsReadOnly" disabled>
+		<div class="labelEcampo blocoEntradaSaida">
+				<div class="labelCampoEntradaSaida">
+				<div class="label"><span>Sair às</span></div>
+				<input value="--:--" type="text" name="horaSair" id="horaSair" class="inputsReadOnly" disabled>
+			</div>
 		</div>
 
 	</form>
 	<div class="footer">
-		v3.15
+		v3.18
 	</div>
 	<script src="js/funcoes.js"></script>
 </body>
