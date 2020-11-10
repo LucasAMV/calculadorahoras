@@ -1,5 +1,11 @@
 ####################################################################################################################################
 https://stackoverflow.com/questions/16333790/node-js-quick-file-server-static-files-over-http?page=1&tab=votes#tab-top
+https://www.npmjs.com/package/http-server
+
+#Instalando no Linux
+sudo apt install nodejs
+sudo apt install npm
+npm install --global http-server
 
 Iniciar um server local HTTP usando NodeJs:
 cd C:\Nz\Dev\Git\GitHub\CalculadoraHoras
