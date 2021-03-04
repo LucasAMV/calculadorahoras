@@ -202,3 +202,42 @@ function salvarEmArquivo() {
 }
 
 window.addEventListener('keyup', function(e) { if(e.key === 'c') resetAndAutoFocus(); });
+
+
+//PERSISTENCIA
+//https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API
+//https://github.com/mdn/dom-examples/blob/master/web-storage/main.js
+var horasNecessarias = document.getElementById('horasNecessarias');
+var hora1 = document.getElementById('h1');
+var hora2 = document.getElementById('h2');
+var hora3 = document.getElementById('h3');
+var hora4 = document.getElementById('h4');
+
+if(!localStorage.getItem('h1')) {
+  populateStorage();
+} else {
+  restauraHoras();
+}
+
+function populateStorage() {
+  localStorage.setItem('horasNecessarias', document.getElementById('horasNecessarias').value);
+  localStorage.setItem('h1', document.getElementById('h1').value);
+  localStorage.setItem('h2', document.getElementById('h2').value);
+  localStorage.setItem('h3', document.getElementById('h3').value);
+  localStorage.setItem('h4', document.getElementById('h4').value);
+
+  restauraHoras();
+}
+
+function restauraHoras() {
+  document.getElementById('horasNecessarias').value = localStorage.getItem('horasNecessarias');
+  document.getElementById('h1').value = localStorage.getItem('h1');
+  document.getElementById('h2').value = localStorage.getItem('h2');
+  document.getElementById('h3').value = localStorage.getItem('h3');
+  document.getElementById('h4').value = localStorage.getItem('h4');
+}
+
+hora1.onchange = populateStorage;
+hora2.onchange = populateStorage;
+hora3.onchange = populateStorage;
+hora4.onchange = populateStorage;
