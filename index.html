@@ -35,7 +35,7 @@
 
 <body id="pageBody">
 	<!-- https://www.codexpedia.com/javascript/submitting-html-form-without-reload-the-page/ -->
-	<form action="#" id="form1" name="calculator" onreset="document.getElementById('h1').focus();" onsubmit="f1();">
+	<form action="#" id="form1" name="calculator" onreset="resetAndAutoFocus();" onsubmit="f1();">
 		<div class="labelEcampo" style="margin-bottom: 10px;">
 			<div class="label"><span>Preciso fazer</span></div>
 			<input value="08:00" type="text" id="horasNecessarias" onfocus="autoLimpar(this);" required />
@@ -69,7 +69,7 @@
 
 		<div class="botoes">
 			<button type="button" id="calcular">CALCULAR</button>
-			<button type="reset" title="Clique ou pressione 'c' para limpar." onreset="resetAndAutoFocus();">LIMPAR</button>
+			<button type="reset" title="Clique ou pressione 'c' para limpar.">LIMPAR</button>
 		</div>
 
 		<div class="labelEcampo blocoEntradaSaida">

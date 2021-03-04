@@ -168,6 +168,8 @@ function listenerKeyUp(event, campoMascarar, focarEmSeguida) {
 
 function resetAndAutoFocus() {
 	document.getElementById('form1').reset();
+	window.localStorage.clear();
+	console.log('eai removeu?');
 	document.getElementById('h1').focus();
 }
 
@@ -207,12 +209,6 @@ window.addEventListener('keyup', function(e) { if(e.key === 'c') resetAndAutoFoc
 //PERSISTENCIA
 //https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API
 //https://github.com/mdn/dom-examples/blob/master/web-storage/main.js
-var horasNecessarias = document.getElementById('horasNecessarias');
-var hora1 = document.getElementById('h1');
-var hora2 = document.getElementById('h2');
-var hora3 = document.getElementById('h3');
-var hora4 = document.getElementById('h4');
-
 if(!localStorage.getItem('h1')) {
   populateStorage();
 } else {
@@ -237,7 +233,7 @@ function restauraHoras() {
   document.getElementById('h4').value = localStorage.getItem('h4');
 }
 
-hora1.onchange = populateStorage;
-hora2.onchange = populateStorage;
-hora3.onchange = populateStorage;
-hora4.onchange = populateStorage;
+document.getElementById('h1').onchange = populateStorage;
+document.getElementById('h2').onchange = populateStorage;
+document.getElementById('h3').onchange = populateStorage;
+document.getElementById('h4').onchange = populateStorage;
