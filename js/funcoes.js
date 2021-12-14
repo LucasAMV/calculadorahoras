@@ -177,7 +177,7 @@ function resetAndAutoFocus() {
 //https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code
 //https://stackoverflow.com/questions/6504914/how-can-i-capture-keyboard-events-are-from-which-keys
 //document.getElementById('h1').addEventListener("keyup", function (e) { listenerKeyUp(e,'h1','h2'); } )
-document.getElementById('horasNecessarias').oninput = function(e) { avaliarFormatacao(e.data, 'horasNecessarias'); };
+document.getElementById('horasNecessarias').oninput = function(e) { listenerKeyUp(e,'horasNecessarias','h1'); };
 document.getElementById('h1').oninput = function(e) { listenerKeyUp(e,'h1','h2'); };
 document.getElementById('h2').oninput = function(e) { listenerKeyUp(e,'h2','h3'); };
 document.getElementById('h3').oninput = function(e) { listenerKeyUp(e,'h3','h4'); };

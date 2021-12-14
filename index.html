@@ -38,7 +38,7 @@
 	<form action="#" id="form1" name="calculator" onreset="resetAndAutoFocus();" onsubmit="f1();">
 		<div class="labelEcampo" style="margin-bottom: 10px;">
 			<div class="label"><span>Preciso fazer</span></div>
-			<input value="08:00" type="text" id="horasNecessarias" onfocus="autoLimpar(this);" required />
+			<input value="08:00" type="text" id="horasNecessarias" onfocus="autoLimpar(this);" onblur="f1();" required />
 		</div>
 
 		<div id="blocosEntradasSaidas" class="blocosEntradasSaidas">
@@ -107,7 +107,7 @@
 	</form>
 
 	<div class="footer">
-		v3.2
+		v3.3
 	</div>
 	<script src="js/funcoes.js"></script>
 </body>
