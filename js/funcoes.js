@@ -169,8 +169,8 @@ function listenerKeyUp(event, campoMascarar, focarEmSeguida) {
 function resetAndAutoFocus() {
 	document.getElementById('form1').reset();
 	window.localStorage.clear();
-	console.log('eai removeu?');
 	document.getElementById('h1').focus();
+	console.log("Form e LocalStorage limpos.");
 }
 
 //https://www.gavsblog.com/blog/detect-single-and-multiple-keypress-events-javascript
@@ -209,20 +209,13 @@ window.addEventListener('keyup', function(e) { if(e.key === 'c') resetAndAutoFoc
 //PERSISTENCIA
 //https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API
 //https://github.com/mdn/dom-examples/blob/master/web-storage/main.js
-if(!localStorage.getItem('h1')) {
-  populateStorage();
-} else {
-  restauraHoras();
-}
-
 function populateStorage() {
   localStorage.setItem('horasNecessarias', document.getElementById('horasNecessarias').value);
   localStorage.setItem('h1', document.getElementById('h1').value);
   localStorage.setItem('h2', document.getElementById('h2').value);
   localStorage.setItem('h3', document.getElementById('h3').value);
   localStorage.setItem('h4', document.getElementById('h4').value);
-
-  restauraHoras();
+  console.log("Valores dos campos foram salvos.");
 }
 
 function restauraHoras() {
@@ -231,8 +224,12 @@ function restauraHoras() {
   document.getElementById('h2').value = localStorage.getItem('h2');
   document.getElementById('h3').value = localStorage.getItem('h3');
   document.getElementById('h4').value = localStorage.getItem('h4');
+  console.log("Horas restauradas.");
 }
 
+restauraHoras();
+
+document.getElementById('horasNecessarias').onchange = populateStorage;
 document.getElementById('h1').onchange = populateStorage;
 document.getElementById('h2').onchange = populateStorage;
 document.getElementById('h3').onchange = populateStorage;
